@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Alta Empleador</title>
+		<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+	</head>
+	
+	<body>
+		<header th:replace="/layouts/header :: header"></header>
+		<div class="container col-4">
+			<br>
+			<p class="h4">Alta de Empleador</p>
+			<br>
+	
+			<form th:action="@{/empleador/guardar}" method="POST" th:object="${empleador}">
+			
+				<div class="mb-3">
+					<label for="cuit" class="form-label">Cuit</label> 
+					<input th:field=*{cuit} type="number" class="form-control" id="cuit" placeholder="Ingrese Cuit">
+					<div class="text-danger" th:if="${#fields.hasErrors('cuit')}" th:errors="*{cuit}"></div>
+				</div>
+				<div class="mb-3">
+					<label for="razonSocial" class="form-label">Razon Social</label> 
+					<input th:field=*{razonSocial} type="text" class="form-control" id="razonSocial" placeholder="Ingrese Razon Social">
+					<div class="text-danger" th:if="${#fields.hasErrors('razonSocial')}" th:errors="*{razonSocial}"></div>
+				</div>
+				<div class="mb-3">
+					<label for="F" class="form-label">Nombre del Comercio</label> 
+					<input th:field=*{nombreComercial}  type="text" class="form-control" id="fechaInicioId" placeholder="Ingrese Nombre Comercial">
+					<div class="text-danger" th:if="${#fields.hasErrors('nombreComercial')}" th:errors="*{nombreComercial}"></div>
+				</div>
+				<div class="mb-3">
+					<label for="fechaFinId" class="form-label">Fecha de inicio de Actividad</label> 
+					<input th:field=*{inicioActividad} type="date" class="form-control" id="inicioActividadId" placeholder="Ingrese Fecha de inicio de actividad">
+					<div class="text-danger" th:if="${#fields.hasErrors('inicioActividad')}" th:errors="*{inicioActividad}"></div>
+				</div>
+				<div class="mb-3">
+					<label for="email" class="form-label">Email</label> 
+					<input th:field=*{email} type="email" class="form-control" id="email" placeholder="Ingrese email">
+					<div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+				</div>
+				
+				<div class="mb-3">
+					<label for="horasId" class="form-label">Telefono</label> 
+					<input th:field=*{telefono} type="number" class="form-control" id="telefonoId" placeholder="Ingrese Numero de telefono">
+					<div class="text-danger" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></div>
+				</div>
+				<div class="mb-3">
+					<label for="domicilio" class="form-label">Domicilio</label> 
+					<input th:field=*{domicilio} type="text" class="form-control" id="domicilio" placeholder="Ingrese su Domicilio">
+					<div class="text-danger" th:if="${#fields.hasErrors('domicilio')}" th:errors="*{domicilio}"></div>
+				</div>
+				
+	
+			<div class="mb-3">
+					<label for="provincia" class="form-label">Provincia</label> 
+					<input th:field=*{provincia} type="text" class="form-control" id="provincia" placeholder="Escriba su provincia">
+					<div class="text-danger" th:if="${#fields.hasErrors('provincia')}" th:errors="*{provincia}"></div>
+					
+				</div>
+				
+				<div class="mb-3">
+					<label for="web" class="form-label">Web</label> 
+					<input th:field=*{web} type="text" class="form-control" id="web" placeholder="Ingrese su Pagina Web">
+					<div class="text-danger" th:if="${#fields.hasErrors('web')}" th:errors="*{web}"></div>
+				</div>
+				<div class="mb-3">
+					<label for="descripcion" class="form-label">Descripcion</label> 
+					<input th:field=*{descripcion} type="text" class="form-control" id="descripcion" placeholder="Ingrese una Descripcion">
+					<div class="text-danger" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></div>
+				</div>
+				<div class="mb-3">
+					<label for="passw" class="form-label">Contraseña</label> 
+					<input th:field=*{passw} type="text" class="form-control" id="passw" placeholder="Ingrese una Contraseña">
+					<div class="text-danger" th:if="${#fields.hasErrors('passw')}" th:errors="*{passw}"></div>
+				</div>
+								
+				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+					<button class="btn btn-primary me-md-2" type="submit">Enviar</button>
+					 <a th:href="@{/inicio}" id="cancel" name="cancel" class="btn btn-secondary">Cancelar</a>
+	  				
+				</div>
+			</form>
+		</div>
+		<br><br>
+		<footer th:replace="/layouts/footer :: footer"></footer>
+		<script type="text/javascript" th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+		<script type="text/javascript" th:src="@{/webjars/popper.js/2.9.3/umd/popper.min.js}"></script>
+		<script type="text/javascript" th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
+	
+	
+	</body>
+</html>
