@@ -8,12 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import ar.edu.unju.fi.service.ICiudadanoService;
 import ar.edu.unju.fi.service.IEmpleadorService;
-@RequestMapping("/login")
+
 @Controller
+@RequestMapping("/login")
 public class LoginController {
 
 	@Autowired
 	ICiudadanoService ciudadanoService;
+	@Autowired
 	IEmpleadorService empleadorService;
 @GetMapping("/ciudadano")
 public String loginCiudadano(Model model) {
@@ -23,7 +25,7 @@ public String loginCiudadano(Model model) {
 
 @GetMapping("/empleador")
 public String loginEmpleador(Model model) {
-	model.addAttribute("empleador", empleadorService.getEmpleador());
+	model.addAttribute("empleador", empleadorService.getEmpleador() );
 	return "login_empleador";
 }
 
