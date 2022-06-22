@@ -21,6 +21,11 @@ public class EmpleadorServiceimp implements IEmpleadorService {
 	@Override
 	public Empleador getEmpleador() {
 		return new Empleador();
+	}
+	@Override
+	public Iterable<Empleador> getListaEmpleador() {
+		
+		return empleadorDaoImp.findAll();
 	} 
 	
 }

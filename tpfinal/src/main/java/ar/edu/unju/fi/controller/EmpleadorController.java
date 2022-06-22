@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.entity.Empleador;
+import ar.edu.unju.fi.service.ICiudadanoService;
 import ar.edu.unju.fi.service.IEmpleadorService;
 
 @Controller
@@ -20,6 +21,8 @@ public class EmpleadorController {
 
 	@Autowired
 	IEmpleadorService empleadorService;
+	@Autowired
+	ICiudadanoService ciudadanoService;
 	
 	@GetMapping("/nuevo")
 public ModelAndView crearEmpleador(Model model)
@@ -42,4 +45,13 @@ public ModelAndView crearEmpleador(Model model)
 		empleadorService.guardarEmpleador(empleador);
 		return mav;
 	}
+	
+	@GetMapping("/home")
+	public ModelAndView homeEmpleador(Model model) {
+		
+		ModelAndView mav = new ModelAndView("home_empleador");
+		mav.addObject("lista", ciudadanoService.getListaCiudadano());
+		return mav;
+	}
+
 }

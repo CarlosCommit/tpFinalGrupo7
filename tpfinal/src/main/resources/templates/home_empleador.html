@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+<title>Empleador</title>
+</head>
+<body>
+	<header th:replace="/layouts/header :: header"></header>
+	
+	<div class="container">
+	<h1>Empleador</h1>
+	
+			<div class="d-grid gap-2">
+  <a class="btn btn-primary" type="button" th:href="@{/cv/nuevo}">Perfiles Laborales</a>
+   <a class="btn btn-danger" type="button" th:href="@{/curso/crear}"> Crear curso online</a>
+</div>
+
+
+<br>
+<h1>OFERTAR LABORALES</h1>
+<br>
+ <a th:href="@{/ofertas/nuevo}" id="nuevo" class="btn btn-primary">Filtro</a>
+
+
+
+<div th:each="ciudadano: ${lista}" class="card text-center">
+  <div class="card-header" th:text="${ciudadano.provincia}">
+  </div>
+  <div class="card-body">
+    <h5 class="card-title" th:text="${ciudadano.dni}"></h5>
+    <p>telefono</p>
+    <p class="card-text" th:text="${ciudadano.telefono}"></p>
+    <a href="#" class="btn btn-primary">Editar</a>
+    <a href="#" class="btn btn-danger">Eliminar</a>
+  </div>
+  <div class="card-footer text-muted">
+  </div>
+  <br>
+</div>
+</div>
+
+
+	<footer th:replace="/layouts/footer :: footer"></footer>
+	<script src="/webjars/jquery/jquery.min.js" type="text/javascript"></script>
+	<script src="/webjars/popper.js/umd/popper.min.js" type="text/javascript"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+</body>
+</html>
