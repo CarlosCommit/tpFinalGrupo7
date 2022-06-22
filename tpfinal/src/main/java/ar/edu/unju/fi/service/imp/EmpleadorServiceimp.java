@@ -20,7 +20,6 @@ public class EmpleadorServiceimp implements IEmpleadorService {
 	} 
 	@Override
 	public Empleador getEmpleador() {
-	
 		return new Empleador();
 	} 
 	
