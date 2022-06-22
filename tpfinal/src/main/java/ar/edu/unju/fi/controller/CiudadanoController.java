@@ -24,8 +24,7 @@ public class CiudadanoController {
 @GetMapping("/nuevo")
 public ModelAndView nuevociudadano(Model model) {
 	ModelAndView mav = new ModelAndView("alta_ciudadano");
-	Ciudadano ciudadano = new Ciudadano();
-	mav.addObject("ciudadano", ciudadano);
+	mav.addObject("ciudadano", ciudadanoService.getCiudadano());
 	return mav;
 }
 
@@ -40,5 +39,21 @@ public ModelAndView guardarciudadano(@Validated @ModelAttribute("ciudadano")Ciud
 	ciudadanoService.guardarCiudadano(ciudadano);
 ModelAndView mav = new ModelAndView("redirect:/ciudadano/home");
 return mav;
+}
+
+@GetMapping("/home")
+public ModelAndView homeciudadano(Model model) {
+	
+	ModelAndView mav = new ModelAndView("home_ciudadano");
+	mav.addObject("lista", ciudadanoService.getListaCiudadano());
+	return mav;
+}
+
+
+@GetMapping("/login")
+public ModelAndView loginc() {
+	ModelAndView mav = new ModelAndView("login_ciudadano");
+	mav.addObject("ciudadano", ciudadanoService.getCiudadano());
+return mav;	
 }
 }
