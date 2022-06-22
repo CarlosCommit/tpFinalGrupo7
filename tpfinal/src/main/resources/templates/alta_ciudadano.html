@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+<title>Alta ciudadano</title>
+</head>
+<body>
+	
+	
+	
+	
+	<div class="container">
+	<h1>Alta de ciudadano</h1>
+	<form th:action="@{/ciudadano/guardar}" method="POST" th:object="${ciudadano}">
+	
+	
+	
+	<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Dni</label>
+  <input th:field="*{dni}" type="number" class="form-control" id="codigoid" placeholder="Ingrese el Dni">
+  <div class="text-danger" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div>
+	</div>
+	<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Email</label>
+  <input th:field="*{email}" type="email" class="form-control" id="nombreid" placeholder="Ingrese el Email">
+  <div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+	</div>
+	<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Estado civil</label>
+  <input th:field="*{estadoCivil}" type="text" class="form-control" id="paisid" placeholder="Ingrese el Estado Civil">
+  <div class="text-danger" th:if="${#fields.hasErrors('estadoCivil')}" th:errors="*{estadoCivil}"></div>
+	</div>
+	<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Provincia</label>
+  <input th:field="*{provincia}" type="text" class="form-control" id="estadioid" placeholder="Ingrese provincia">
+  <div class="text-danger" th:if="${#fields.hasErrors('provincia')}" th:errors="*{provincia}"></div>
+	</div>
+	<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Telefono</label>
+  <input th:field="*{telefono}" type="number" class="form-control" id="estadioid" placeholder="Ingrese telefono">
+  <div class="text-danger" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></div>
+	</div>
+	<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Fecha de nacimiento</label>
+  <input th:field="*{fechaNacimiento}" type="date" class="form-control" id="estadioid" placeholder="Ingrese fecha de nacimiento">
+  <div class="text-danger" th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}"></div>
+	</div>
+	<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Contraseña</label>
+  <input th:field="*{passw}" type="text" class="form-control" id="estadioid" placeholder="Ingrese contraseña">
+  <div class="text-danger" th:if="${#fields.hasErrors('passw')}" th:errors="*{passw}"></div>
+	</div>
+	<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Numero de tramite</label>
+  <input th:field="*{numeroTramite}" type="text" class="form-control" id="estadioid" placeholder="Ingrese el numero de tramite">
+  <div class="text-danger" th:if="${#fields.hasErrors('numeroTramite')}" th:errors="*{numeroTramite}"></div>
+	</div>
+	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+					<button class="btn btn-primary me-md-2" type="submit">Guardar</button>
+					 <a th:href="@{/inicio}" id="cancel" class="btn btn-secondary">Cancelar</a>
+	</div>
+	</form>
+	</div>
+	
+	
+
+	
+	<script src="/webjars/jquery/jquery.min.js" type="text/javascript"></script>
+	<script src="/webjars/popper.js/umd/popper.min.js" type="text/javascript"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+</body>
+</html>
