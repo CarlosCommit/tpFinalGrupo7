@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 @Entity
 @Table(name="ofertas")
 public class Oferta implements Serializable{
@@ -37,6 +38,7 @@ public class Oferta implements Serializable{
 	@Column(name="ofe_vacante")
 	private int vacante; 
 	@Column(name="ofe_puesto")
+	@NotEmpty
 	private String puestoRequerido; 
 	@Column(name="ofe_desc")
 	private String resumenPuesto;

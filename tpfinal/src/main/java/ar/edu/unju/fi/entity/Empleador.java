@@ -25,7 +25,6 @@ public class Empleador implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="emp_cuit")
 	@NotNull @Min(value=1,message="no puede ser menor a 1000000")
 	private int cuit; 
