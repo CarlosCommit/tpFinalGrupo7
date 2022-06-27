@@ -20,5 +20,27 @@ public class OfertaServiceimp implements IOfertaService {
 	public Oferta getOferta() {
 		return new Oferta();
 	}
-
+	@Override
+	public void eliminarOferta(long id) {
+		ofertaDaoImp.deleteById(id);
+	}
+	@Override
+	public void editarOferta(Oferta unaOferta) throws Exception{
+		Oferta oferta = encontrar(unaOferta.getId());
+		mapearOferta(unaOferta, oferta);
+	    ofertaDaoImp.save(oferta);
+	}
+	
+  @Override
+   public void mapearOferta(Oferta desde, Oferta hacia)
+{
+ /*
+  * Cambios de valores	  
+  */
+}
+  @Override
+  public Oferta encontrar(long id) throws Exception {
+	  
+	  return ofertaDaoImp.findById(id).orElseThrow(() -> new Exception("El usuario no existe"));
+  }
 }

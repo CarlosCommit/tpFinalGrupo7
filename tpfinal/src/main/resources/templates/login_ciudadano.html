@@ -9,9 +9,6 @@
 </head>
 <body>
 	
-	
-	
-	
 	<div class="container">
 	<h1>Iniciar Sesión</h1>
 	<form th:action="@{/ciudadano/home}" method="POST" th:object="${ciudadano}">
@@ -19,13 +16,13 @@
 	
 	
 	<div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Dni</label>
-  <input th:field="*{dni}" type="number" class="form-control" id="codigoid" placeholder="Ingrese el Dni">
+  <label for="dni" class="form-label">Dni</label>
+  <input th:field="*{dni}" type="number" class="form-control" id="codigoid" placeholder="Ingrese el Dni" name="dni">
   <div class="text-danger" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div>
 	</div>
 	<div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Contraseña</label>
-  <input th:field="*{passw}" type="text" class="form-control" id="estadioid" placeholder="Ingrese contraseña">
+  <label for="passw" class="form-label">Contraseña</label>
+  <input th:field="*{passw}" type="text" class="form-control" id="estadioid" name="passw" placeholder="Ingrese contraseña">
   <div class="text-danger" th:if="${#fields.hasErrors('passw')}" th:errors="*{passw}"></div>
 	</div>
 	

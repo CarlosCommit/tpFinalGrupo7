@@ -43,10 +43,11 @@ return mav;
 
 @GetMapping("/home")
 public ModelAndView homeciudadano(Model model) {
-	
+
 	ModelAndView mav = new ModelAndView("home_ciudadano");
 	mav.addObject("lista", ciudadanoService.getListaCiudadano());
 	return mav;
+	
 }
 
 

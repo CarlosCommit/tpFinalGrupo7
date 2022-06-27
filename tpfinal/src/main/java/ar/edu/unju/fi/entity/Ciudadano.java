@@ -28,7 +28,7 @@ public class Ciudadano implements Serializable {
 	@Column(name="ciu_id")
 	private Long id;
 	@Column(name="ciu_dni")
-	@NotNull @Min(value=1,message="no puede ser menor a 1000000")
+    @Min(value=1,message="no puede ser menor a 1000000")
 	private int dni;
 	@Column(name="ciu_email")
 	@NotEmpty
@@ -51,6 +51,20 @@ public class Ciudadano implements Serializable {
 	@Column(name="ciu_tramite")
 	@NotEmpty
 	private String numeroTramite;
+	@Column(name="ciu_tipo")
+	private String tipo = "ciudadano";
+	
+	public String getTipo() {
+		return tipo;
+	}
+
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+
+
 	
 	public Ciudadano()
 	{
