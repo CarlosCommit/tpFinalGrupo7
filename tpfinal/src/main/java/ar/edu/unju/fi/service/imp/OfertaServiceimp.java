@@ -43,4 +43,10 @@ public class OfertaServiceimp implements IOfertaService {
 	  
 	  return ofertaDaoImp.findById(id).orElseThrow(() -> new Exception("El usuario no existe"));
   }
+  
+@Override
+public Iterable<Oferta> getListaOferta() {
+	return ofertaDaoImp.findAll();
+}
+
 }

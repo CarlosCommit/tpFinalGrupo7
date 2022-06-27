@@ -27,13 +27,13 @@
 
 
 
-<div th:each="ciudadano: ${lista}" class="card text-center">
-  <div class="card-header" th:text="${ciudadano.provincia}">
+<div th:each="oferta: ${lista}" class="card text-center">
+  <div class="card-header" th:text="${oferta.puestoRequerido}">
   </div>
   <div class="card-body">
-    <h5 class="card-title" th:text="${ciudadano.dni}"></h5>
+    <h5 class="card-title" th:text="${oferta.resumenPuesto}"></h5>
     <p>telefono</p>
-    <p class="card-text" th:text="${ciudadano.telefono}"></p>
+    <p class="card-text" th:text="${oferta.salario}"></p>
     <a href="#" class="btn btn-primary">POSTULARSE</a>
   </div>
   <div class="card-footer text-muted">

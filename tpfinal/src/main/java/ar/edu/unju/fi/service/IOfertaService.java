@@ -10,4 +10,5 @@ public interface IOfertaService {
 	public void editarOferta(Oferta unaOferta) throws Exception;
 	 public void mapearOferta(Oferta desde, Oferta hacia);
 	 public Oferta encontrar(long id) throws Exception ;
+	 public Iterable<Oferta> getListaOferta();
 }
