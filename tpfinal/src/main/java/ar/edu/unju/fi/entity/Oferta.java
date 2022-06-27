@@ -16,6 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 @Entity
 @Table(name="ofertas")
 public class Oferta implements Serializable{
@@ -41,18 +42,25 @@ public class Oferta implements Serializable{
 	@NotEmpty
 	private String puestoRequerido; 
 	@Column(name="ofe_desc")
+	@NotEmpty
 	private String resumenPuesto;
 	@Column(name="ofe_tareas")
+	@NotEmpty
 	private String tareas; 
 	@Column(name="ofe_contacto")
+	@NotEmpty
 	private String datosContacto;
 	@Column(name="ofe_jornada")
+	@NotEmpty
 	private String jornada;
 	@Column(name="ofe_requisitos")
+	@NotEmpty
 	private String requisitos; 
 	@Column(name="ofe_salario")
+	@NotNull
 	private int salario;
 	@Column(name="ofe_beneficios")
+	@NotEmpty
 	private String beneficios; 
 	@Column(name="ofe_disponible")
 	private boolean disponible;

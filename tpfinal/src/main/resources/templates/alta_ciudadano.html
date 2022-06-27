@@ -11,8 +11,8 @@
 	
 	
 	
-	
-	<div class="container">
+	<header th:replace="/layouts/header :: header"></header>
+	<div class="container col-4">
 	<h1>Alta de ciudadano</h1>
 	<form th:action="@{/ciudadano/guardar}" method="POST" th:object="${ciudadano}">
 	
@@ -67,7 +67,7 @@
 	
 	
 
-	
+	<footer th:replace="/layouts/footer :: footer"></footer>
 	<script src="/webjars/jquery/jquery.min.js" type="text/javascript"></script>
 	<script src="/webjars/popper.js/umd/popper.min.js" type="text/javascript"></script>
 	<script src="/webjars/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>

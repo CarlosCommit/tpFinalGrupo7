@@ -3,6 +3,8 @@ package ar.edu.unju.fi.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,9 +37,14 @@ public class OfertaController {
 	
    @PostMapping("/guardar")
    
-   public ModelAndView guardarOferta(@ModelAttribute("oferta")Oferta oferta, Model model)
+   public ModelAndView guardarOferta(@Validated @ModelAttribute("oferta")Oferta oferta,BindingResult bindingResult)
    {
-	   ModelAndView mav = new ModelAndView("alta_oferta");
+	   if(bindingResult.hasErrors()) {
+		   ModelAndView mav = new ModelAndView("alta_oferta");
+		  mav.addObject("oferta", oferta);
+		   return mav; 
+	   }
+	   ModelAndView mav = new ModelAndView("redirect:/empleador/home");
 	   ofertaService.guardarOferta(oferta);
 	   return mav; 
    }
