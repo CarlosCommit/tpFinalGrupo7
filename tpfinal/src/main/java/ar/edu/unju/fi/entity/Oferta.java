@@ -27,7 +27,7 @@ public class Oferta implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ofe_id")
-	private int id;
+	private Long id;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="emp_cuit")
 	private Empleador empleador;
@@ -63,10 +63,10 @@ public class Oferta implements Serializable{
 	{
 		
 	}
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public Empleador getEmpleador() {

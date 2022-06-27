@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unju.fi.entity.Empleador;
 import ar.edu.unju.fi.service.ICiudadanoService;
 import ar.edu.unju.fi.service.IEmpleadorService;
+import ar.edu.unju.fi.service.IOfertaService;
 
 @Controller
 @RequestMapping("/empleador")
@@ -23,6 +24,8 @@ public class EmpleadorController {
 	IEmpleadorService empleadorService;
 	@Autowired
 	ICiudadanoService ciudadanoService;
+	@Autowired
+	IOfertaService ofertaService;
 	
 	@GetMapping("/nuevo")
 public ModelAndView crearEmpleador(Model model)
@@ -50,7 +53,7 @@ public ModelAndView crearEmpleador(Model model)
 	public ModelAndView homeEmpleador(Model model) {
 		
 		ModelAndView mav = new ModelAndView("home_empleador");
-		mav.addObject("lista", ciudadanoService.getListaCiudadano());
+		mav.addObject("lista", ofertaService.getListaOferta());
 		return mav;
 	}
 
