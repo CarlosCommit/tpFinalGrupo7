@@ -11,7 +11,7 @@
 		<header th:replace="/layouts/header :: header"></header>
 		<div class="container col-4">
 			<br>
-			<p class="h4">Alta de Empleador</p>
+			<p class="h4">Nuevo Empleador</p>
 			<br>
 	
 			<form th:action="@{/empleador/guardar}" method="POST" th:object="${empleador}">
@@ -78,7 +78,7 @@
 				</div>
 								
 				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-					<button class="btn btn-primary me-md-2" type="submit">Enviar</button>
+					<button class="btn btn-primary me-md-2" type="submit">Guardar</button>
 					 <a th:href="@{/inicio}" id="cancel" name="cancel" class="btn btn-secondary">Cancelar</a>
 	  				
 				</div>

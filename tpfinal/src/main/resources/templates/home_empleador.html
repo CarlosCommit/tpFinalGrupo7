@@ -20,20 +20,24 @@
 
 
 <br>
-<h1>MIS OFERTAS LABORALES</h1>
+<h3>MIS OFERTAS LABORALES</h3>
 <br>
 <a th:href="@{/oferta/nuevo}" id="nuevo" class="btn btn-success">Crear oferta laboral</a>
+<br>
+<br>
  <a th:href="@{/ofertas/nuevo}" id="nuevo" class="btn btn-primary">Filtro</a>
+ 
 
 
 
-<div th:each="oferta: ${lista}" class="card text-center">
-   <div class="card-header" th:text="${oferta.puestoRequerido}">
+<div th:each="oferta: ${lista}" class="card ">
+   <div class="card-header text-center h4" th:text="${oferta.puestoRequerido}">
   </div>
   <div class="card-body">
     <h5 class="card-title" th:text="${oferta.resumenPuesto}"></h5>
+    <h6 class="card-title" th:text="${oferta.requisitos}"></h6>
     <p>telefono</p>
-    <p class="card-text" th:text="${oferta.salario}"></p>
+    <p class="card-text" th:text="${oferta.datosContacto}"></p>
     
     <a th:href="@{/oferta/editar/}+${oferta.id}" class="btn btn-primary">Editar</a>
     <a th:href="@{/oferta/eliminar/}+${oferta.id}" class="btn btn-danger">Eliminar</a>
@@ -41,7 +45,8 @@
   </div>
   <div class="card-footer text-muted">
   </div>
-  <br>
+  <div>
+  </div>
 </div>
 </div>
 

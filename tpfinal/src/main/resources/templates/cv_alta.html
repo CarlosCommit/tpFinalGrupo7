@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Alta Empleador</title>
+		<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+	</head>
+	
+	<body>
+		<header th:replace="/layouts/header :: header"></header>
+		<div class="container col-4">
+			<br>
+			<p class="h4">Crear Curriculum Vitae</p>
+			<br>
+	<h6 class="text-center">Datos personales</h6>
+			<form th:action="@{/curriculum/guardar}" method="POST" th:object="${curriculum}">
+				
+				<div class="mb-3">
+					<label for="nombre" class="form-label">Nombre completo</label> 
+					<input th:field=*{nombre} type="text" class="form-control" id="cuit" placeholder="Ingrese nombre completo">
+					<div class="text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+				</div>
+				
+				<div class="mb-3">
+					<label for="email" class="form-label">Email</label> 
+					<input th:field=*{email} type="text" class="form-control" id="cuit" placeholder="Ingrese email">
+					<div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+				</div>
+				
+				<div class="mb-3">
+					<label for="razonSocial" class="form-label">Dni</label> 
+					<input th:field=*{dni} type="number" class="form-control" id="razonSocial" placeholder="Ingrese dni">
+					<div class="text-danger" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div>
+				</div>
+				<div class="mb-3">
+					<label for="exLaboral" class="form-label">Experiencia Laboral</label> 
+					<input th:field=*{exLaboral}  type="text" class="form-control" id="fechaInicioId" placeholder="Ingrese Experiencias Laborales">
+					<div class="text-danger" th:if="${#fields.hasErrors('exLaboral')}" th:errors="*{exLaboral}"></div>
+				</div>
+				
+				
+				<div class="mb-3">
+					<label for="idioma" class="form-label">Idiomas</label> 
+					<input th:field=*{idioma} type="text" class="form-control" id="cuit" placeholder="Ingrese idiomas">
+					<div class="text-danger" th:if="${#fields.hasErrors('idioma')}" th:errors="*{idioma}"></div>
+				</div>
+				
+				<div class="mb-3">
+					<label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label> 
+					<input th:field=*{fechaNacimiento} type="date" class="form-control" id="cuit" placeholder="Ingrese fecha de nacimiento">
+					<div class="text-danger" th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}"></div>
+				</div>
+				
+				<div class="mb-3">
+					<label for="infoComplementaria" class="form-label">Informacion Complementaria</label> 
+					<input th:field=*{infoComplementaria} type="text" class="form-control" id="cuit" placeholder="Ingrese iformacion complementaria">
+					<div class="text-danger" th:if="${#fields.hasErrors('infoComplementaria')}" th:errors="*{infoComplementaria}"></div>
+				</div>
+				
+				<div class="mb-3">
+					<label for="educacion" class="form-label">Educacion</label> 
+					<input th:field=*{educacion} type="text" class="form-control" id="cuit" placeholder="Ingrese educacion">
+					<div class="text-danger" th:if="${#fields.hasErrors('educacion')}" th:errors="*{educacion}"></div>
+				</div>
+				
+				<div class="mb-3">
+					<label for="datAdicional" class="form-label">Datos adicionales</label> 
+					<input th:field=*{datAdicional} type="text" class="form-control" id="cuit" placeholder="Ingrese datos adicionales">
+					<div class="text-danger" th:if="${#fields.hasErrors('datAdicional')}" th:errors="*{datAdicional}"></div>
+				</div>
+				
+								
+				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+					<button class="btn btn-primary me-md-2" type="submit">Guardar</button>
+					 <a th:href="@{/inicio}" id="cancel" name="cancel" class="btn btn-secondary">Cancelar</a>
+	  				
+				</div>
+			</form>
+		</div>
+		<br><br>
+		<footer th:replace="/layouts/footer :: footer"></footer>
+		<script type="text/javascript" th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+		<script type="text/javascript" th:src="@{/webjars/popper.js/2.9.3/umd/popper.min.js}"></script>
+		<script type="text/javascript" th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
+	
+	
+	</body>
+</html>

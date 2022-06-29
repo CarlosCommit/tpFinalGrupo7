@@ -34,9 +34,7 @@ public class OfertaServiceimp implements IOfertaService {
   @Override
    public void mapearOferta(Oferta desde, Oferta hacia)
 {
- /*
-  * Cambios de valores	  
-  */
+ 
 }
   @Override
   public Oferta encontrar(long id) throws Exception {

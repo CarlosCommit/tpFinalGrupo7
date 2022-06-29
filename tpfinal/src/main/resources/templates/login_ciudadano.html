@@ -25,7 +25,9 @@
   <input th:field="*{passw}" type="text" class="form-control" id="estadioid" name="passw" placeholder="Ingrese contraseña">
   <div class="text-danger" th:if="${#fields.hasErrors('passw')}" th:errors="*{passw}"></div>
 	</div>
-	
+	<br>
+	 <a th:href="@{/ciudadano/nuevo}">Crear usuario</a>
+	 <br>
 	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 					<button class="btn btn-primary me-md-2" type="submit">Ingresar</button>
 					 <a th:href="@{/inicio}" id="cancel" class="btn btn-secondary">Cancelar</a>

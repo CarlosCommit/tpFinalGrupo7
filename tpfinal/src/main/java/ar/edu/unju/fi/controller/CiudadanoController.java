@@ -24,6 +24,7 @@ public class CiudadanoController {
 	@Autowired
 	IOfertaService ofertaService;
 
+private int id;
 @GetMapping("/nuevo")
 public ModelAndView nuevociudadano(Model model) {
 	ModelAndView mav = new ModelAndView("alta_ciudadano");

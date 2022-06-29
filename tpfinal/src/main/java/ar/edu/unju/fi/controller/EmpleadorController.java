@@ -44,7 +44,7 @@ public ModelAndView crearEmpleador(Model model)
 		    	return mav;
 		    }
 		
-		ModelAndView mav = new ModelAndView("redirect:/empleador/nuevo");
+		ModelAndView mav = new ModelAndView("redirect:/empleador/home");
 		empleadorService.guardarEmpleador(empleador);
 		return mav;
 	}

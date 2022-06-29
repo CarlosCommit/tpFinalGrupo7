@@ -13,7 +13,9 @@
 	
 	<header th:replace="/layouts/header :: header"></header>
 	<div class="container col-4">
-	<h1>Alta de ciudadano</h1>
+	<br>
+	<h4>Nuevo ciudadano</h4>
+	<br>
 	<form th:action="@{/ciudadano/guardar}" method="POST" th:object="${ciudadano}">
 	
 	

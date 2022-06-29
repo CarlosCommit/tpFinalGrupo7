@@ -12,7 +12,9 @@
 	<header th:replace="/layouts/header :: header"></header>
 	
 	<div class="container col-4">
-	<h1>Alta de oferta laboral</h1>
+	<br>
+	<h4>Alta de oferta laboral</h4>
+	<br>
 	<form th:action="@{/oferta/guardar}" method="POST" th:object="${oferta}">
 	
 	<div class="mb-3">
