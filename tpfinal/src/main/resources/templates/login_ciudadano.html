@@ -17,7 +17,9 @@
 	
 	<div class="mb-3">
   <label for="dni" class="form-label">Dni</label>
+  
   <input th:field="*{dni}" type="number" class="form-control" id="codigoid" placeholder="Ingrese el Dni" name="dni">
+  
   <div class="text-danger" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div>
 	</div>
 	<div class="mb-3">

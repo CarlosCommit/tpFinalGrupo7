@@ -67,6 +67,7 @@ public class Oferta implements Serializable{
 	
 	
 	
+	
 	public Oferta()
 	{
 		

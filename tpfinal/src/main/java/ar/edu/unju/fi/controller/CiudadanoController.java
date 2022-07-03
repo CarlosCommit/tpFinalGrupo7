@@ -25,10 +25,15 @@ public class CiudadanoController {
 	IOfertaService ofertaService;
 
 private int id;
+
 @GetMapping("/nuevo")
 public ModelAndView nuevociudadano(Model model) {
 	ModelAndView mav = new ModelAndView("alta_ciudadano");
+	
+	//mav.addAllObjects(usuario);
 	mav.addObject("ciudadano", ciudadanoService.getCiudadano());
+	
+	
 	return mav;
 }
 

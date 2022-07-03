@@ -6,4 +6,6 @@ import ar.edu.unju.fi.entity.Oferta;
 
 public interface IOfertaDAO extends CrudRepository<Oferta, Long> {
 
+	
+	
 }

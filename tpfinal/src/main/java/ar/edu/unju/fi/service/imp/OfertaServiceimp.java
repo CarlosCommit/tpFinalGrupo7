@@ -47,4 +47,8 @@ public Iterable<Oferta> getListaOferta() {
 	return ofertaDaoImp.findAll();
 }
 
+
+
+
 }
+
