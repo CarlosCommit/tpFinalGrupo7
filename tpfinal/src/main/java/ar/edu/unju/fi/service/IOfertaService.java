@@ -3,7 +3,10 @@ package ar.edu.unju.fi.service;
 
 import java.util.Optional;
 
+import ar.edu.unju.fi.entity.Ciudadano;
 import ar.edu.unju.fi.entity.Oferta;
+
+
 
 public interface IOfertaService {
 
@@ -16,7 +19,7 @@ public interface IOfertaService {
 	 public Iterable<Oferta> getListaOferta();
 	 public Optional<Oferta> buscarOferta(long id);
 	 public Iterable<Oferta> getListaOfertaEmpleador(long id);
-	 
 	 public Iterable<Oferta> getListaFiltroProvincia(String provincia);
+	 public void agregarCiudadanoContratado(Oferta oferta, Ciudadano ciudadano);
 	 
 }

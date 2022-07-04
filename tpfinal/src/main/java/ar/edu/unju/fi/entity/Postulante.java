@@ -1,6 +1,8 @@
 package ar.edu.unju.fi.entity;
 
-import java.util.Optional;
+
+
+import java.io.Serializable;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,8 +17,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="postulados")
-public class Postulante {
+public class Postulante implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="pos_id")
@@ -26,9 +33,10 @@ public class Postulante {
 	           fetch = FetchType.EAGER)
 	private Oferta oferta;
 	
-	@ManyToOne(cascade = CascadeType.ALL,
+	@ManyToOne(cascade = {CascadeType.ALL},
 	           fetch = FetchType.EAGER)
 	private Ciudadano ciudadano;
+	
 	
 	public long getId() {
 		return id;

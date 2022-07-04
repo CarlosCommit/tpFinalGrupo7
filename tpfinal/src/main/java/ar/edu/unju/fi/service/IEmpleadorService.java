@@ -13,5 +13,5 @@ public interface IEmpleadorService {
 	public Iterable<Empleador> getListaEmpleador();
 	public Optional<Empleador> buscarEmpleador(long id);
 	public long getId(long id);
-	public Iterable<Postulante> getListaPostulante(long id);
+	public List<Postulante> getListaPostulante(long id);
 }

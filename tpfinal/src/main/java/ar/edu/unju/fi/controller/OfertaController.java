@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unju.fi.entity.Ciudadano;
 import ar.edu.unju.fi.entity.Empleador;
 import ar.edu.unju.fi.entity.Oferta;
+import ar.edu.unju.fi.service.ICiudadanoService;
 import ar.edu.unju.fi.service.IEmpleadorService;
 import ar.edu.unju.fi.service.IOfertaService;
 
@@ -29,6 +31,8 @@ public class OfertaController {
 	IOfertaService ofertaService;
 	@Autowired
 	IEmpleadorService empleadorService;
+	@Autowired
+	ICiudadanoService ciudadanoService;
 	
 	
    @GetMapping("/nuevo")
@@ -66,5 +70,15 @@ public class OfertaController {
 	  ModelAndView mav = new ModelAndView("redirect:/empleador/home");
 	  return mav;
    }
+   
+ @GetMapping(path = "/contratar/{id}/{idUsuario}")
+   
+   public ModelAndView contratar(@PathVariable(name="id") long id,@PathVariable(name="idUsuario")long idUsuario)
+   {
+	  ofertaService.agregarCiudadanoContratado( ofertaService.buscarOferta(id).get() ,ciudadanoService.buscarId(idUsuario).get() );
+	  ModelAndView mav = new ModelAndView("redirect:/empleador/home");
+	  return mav;
+   }
+   
    
 }

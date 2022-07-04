@@ -60,15 +60,17 @@ public class EmpleadorServiceimp implements IEmpleadorService {
 		return empleador.get().getId();
 	} 
 	@Override
-	public Iterable<Postulante> getListaPostulante(long id) {
+	public List<Postulante> getListaPostulante(long id) {
 	
 		Iterable<Oferta> listaOferta = ofertaDaoImp.findByActiveAndId(id);
+		List<Postulante> listaPostulantes = new ArrayList<Postulante>();
 		
-		Iterable<Postulante> listaPostulantes = postuladoDaoImp.findByIdOferta(Long.parseLong("3"));
+		//Iterable<Postulante> listaPostulantes = postuladoDaoImp.findByIdOferta(Long.parseLong("1"));
 		
-		for (Postulante postulante: listaPostulantes)
+		for (Oferta oferta: listaOferta)
 		{
-			System.out.println(postulante.getId());
+			listaPostulantes.addAll(postuladoDaoImp.findByIdOferta(oferta.getId()));
+			
 		}
 		
 		/*for(Oferta oferta: listaOferta)

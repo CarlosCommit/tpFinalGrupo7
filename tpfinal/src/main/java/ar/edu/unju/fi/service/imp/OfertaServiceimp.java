@@ -1,14 +1,18 @@
 package ar.edu.unju.fi.service.imp;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.edu.unju.fi.entity.Ciudadano;
 import ar.edu.unju.fi.entity.Oferta;
+import ar.edu.unju.fi.entity.Postulante;
 import ar.edu.unju.fi.repository.IEmpleadorDAO;
 import ar.edu.unju.fi.repository.IOfertaDAO;
+import ar.edu.unju.fi.repository.IPostuladosDAO;
 import ar.edu.unju.fi.service.IOfertaService;
 @Service
 public class OfertaServiceimp implements IOfertaService {
@@ -17,6 +21,8 @@ public class OfertaServiceimp implements IOfertaService {
 	IOfertaDAO ofertaDaoImp; 
 	@Autowired
 	IEmpleadorDAO empleadorImp;
+	@Autowired
+	IPostuladosDAO postuladoImp;
 	@Override
 	public void guardarOferta(Oferta oferta,String username) {
 	
@@ -54,7 +60,9 @@ public class OfertaServiceimp implements IOfertaService {
   
 @Override
 public Iterable<Oferta> getListaOferta() {
-	return ofertaDaoImp.findByActive();
+	
+	 return ofertaDaoImp.findByActive();
+	 
 }
 @Override
 public Optional<Oferta> buscarOferta(long id) {
@@ -69,6 +77,15 @@ public Iterable<Oferta> getListaOfertaEmpleador(long id) {
 public Iterable<Oferta> getListaFiltroProvincia(String provincia) {
 	
 	return ofertaDaoImp.findByProvincia(provincia);
+}
+@Override
+public void agregarCiudadanoContratado(Oferta oferta, Ciudadano ciudadano) {
+	List<Ciudadano> ciudadano2 = oferta.getCiudadanos();
+	ciudadano2.add(ciudadano);
+	oferta.setCiudadanos(ciudadano2);
+	oferta.setVacante(oferta.getVacante()-1);
+	ofertaDaoImp.save(oferta);
+	
 }
 
 

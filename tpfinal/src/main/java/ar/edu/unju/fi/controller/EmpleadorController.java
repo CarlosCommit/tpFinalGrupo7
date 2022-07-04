@@ -64,13 +64,8 @@ public ModelAndView crearEmpleador(Model model)
 	}
 	@GetMapping("/postulantes")
 	public ModelAndView verPostulantes(Model model,Principal principal) {
-		
-		//ModelAndView mav = new ModelAndView("lista_postulantes");
 		ModelAndView mav = new ModelAndView("lista_postulantes");
-		Iterable<Postulante> listaPostulante = empleadorService.getListaPostulante(empleadorService.getId(Long.parseLong(principal.getName())));
-		
-		//mav.addObject("lista", listaPostulante);
-		//empleadorService.getListaPostulante(empleadorService.getId(Long.parseLong(principal.getName())));
+		mav.addObject("lista",empleadorService.getListaPostulante(empleadorService.getId(Long.parseLong(principal.getName()))));
 		return mav;
 	}
 

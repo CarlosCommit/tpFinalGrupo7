@@ -1,7 +1,7 @@
 package ar.edu.unju.fi.entity;
 
 import java.io.Serializable;
-
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,7 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -34,9 +34,9 @@ public class Oferta implements Serializable{
 	@JoinColumn(name="emp_id")
 	private Empleador empleador;
 	
-	@OneToMany(cascade = CascadeType.ALL,
+	@OneToMany(cascade = {CascadeType.ALL},
 	           fetch = FetchType.EAGER)
-	private List<Ciudadano> ciudadanos;	
+	private List<Ciudadano> ciudadanos = new ArrayList<Ciudadano>();	
 	
 	@Column(name="ofe_vacante")
 	@NotNull
