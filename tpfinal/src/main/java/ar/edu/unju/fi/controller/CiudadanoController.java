@@ -1,5 +1,7 @@
 package ar.edu.unju.fi.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -53,10 +56,13 @@ return mav;
 }
 
 @GetMapping("/home")
-public ModelAndView homeciudadano(Model model) {
+public ModelAndView homeciudadano(Model model,Principal principal) {
 
 	ModelAndView mav = new ModelAndView("home_ciudadano");
 	mav.addObject("lista", ofertaService.getListaOferta());
+	
+	//System.out.println(principal.getClass);
+	
 	return mav;
 	
 }
@@ -68,5 +74,16 @@ public ModelAndView loginc() {
 	mav.addObject("ciudadano", ciudadanoService.getCiudadano());
 return mav;	
 }
+
+@GetMapping("/filtrar/{pro}")
+public ModelAndView filtrarProvincia(@PathVariable(name="pro")String pro)
+{
+	ModelAndView mav = new ModelAndView("home_ciudadano");
+	mav.addObject("lista", ofertaService.getListaFiltroProvincia(pro));
+	return mav;
+}
+
+
+
 
 }

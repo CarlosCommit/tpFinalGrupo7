@@ -8,30 +8,52 @@
 
 <header th:fragment="header" id="head">
 
-<nav class="navbar navbar-expand-lg bg-dark">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">BUSSINESS</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
-        </li>
-      </ul>
-      <span class="navbar-text">
-            <a class="nav-link" th:href="@{/inicio}">Cerrar Sesión</a>
-      </span>
-    </div>
+    <ul class="navbar-nav">
+      <!-- Avatar -->
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle d-flex align-items-center"
+          
+          id="navbarDropdownMenuLink"
+          role="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <img
+            src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp"
+            class="rounded-circle"
+            height="22"
+            alt="Portrait of a Woman"
+            loading="lazy"
+          />
+          <span th:text="${#authentication.getPrincipal().getUsername()}"></span>
+        </a>
+        
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+       
+          <li>
+            <a class="dropdown-item" href="#">Cerrar Sesion</a>
+          </li>
+        </ul>
+        
+      </li>
+    </ul>
   </div>
 </nav>
+
+
+
+
+
+
+
+
+
+
+
 </header>
 </body>
 </html>

@@ -8,5 +8,5 @@ import ar.edu.unju.fi.entity.Usuario;
 
 public interface IUsuarioDAO extends CrudRepository<Usuario, Long> {
 
-	public Optional<Usuario> findByUser(Long userName);
+	//public Optional<Usuario> findByUser(Long userName);
 }

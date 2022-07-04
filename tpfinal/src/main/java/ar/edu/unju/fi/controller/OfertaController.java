@@ -1,5 +1,9 @@
 package ar.edu.unju.fi.controller;
 
+import java.security.Principal;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unju.fi.entity.Empleador;
 import ar.edu.unju.fi.entity.Oferta;
 import ar.edu.unju.fi.service.IEmpleadorService;
 import ar.edu.unju.fi.service.IOfertaService;
@@ -27,17 +32,18 @@ public class OfertaController {
 	
 	
    @GetMapping("/nuevo")
-   public ModelAndView crearOferta(Model model)
+   public ModelAndView crearOferta(Model model,Principal principal)
    {
-	  ModelAndView mav = new ModelAndView("alta_oferta");
+	 ModelAndView mav = new ModelAndView("alta_oferta");
+	 //Optional<Empleador> empleador =   empleadorService.buscarEmpleador(Long.parseLong(principal.getName()));
+	 //System.out.println(empleador.get().getNombreComercial() );
 	  mav.addObject("oferta",ofertaService.getOferta());
-	  mav.addObject("empleadores",empleadorService.getListaEmpleador());
 	  return mav;
    }
 	
    @PostMapping("/guardar")
    
-   public ModelAndView guardarOferta(@Validated @ModelAttribute("oferta")Oferta oferta,BindingResult bindingResult)
+   public ModelAndView guardarOferta(@Validated @ModelAttribute("oferta")Oferta oferta,BindingResult bindingResult,Principal principal)
    {
 	   if(bindingResult.hasErrors()) {
 		   ModelAndView mav = new ModelAndView("alta_oferta");
@@ -45,7 +51,10 @@ public class OfertaController {
 		   return mav; 
 	   }
 	   ModelAndView mav = new ModelAndView("redirect:/empleador/home");
-	   ofertaService.guardarOferta(oferta);
+	   
+	ofertaService.guardarOferta(oferta, principal.getName());
+	  
+	  
 	   return mav; 
    }
    

@@ -1,5 +1,7 @@
 package ar.edu.unju.fi.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.entity.Empleador;
+import ar.edu.unju.fi.entity.Postulante;
 import ar.edu.unju.fi.service.ICiudadanoService;
 import ar.edu.unju.fi.service.IEmpleadorService;
 import ar.edu.unju.fi.service.IOfertaService;
+import ar.edu.unju.fi.service.IPostuladoService;
 
 @Controller
 @RequestMapping("/empleador")
@@ -26,6 +30,8 @@ public class EmpleadorController {
 	ICiudadanoService ciudadanoService;
 	@Autowired
 	IOfertaService ofertaService;
+	@Autowired
+	IPostuladoService postuladoService;
 	
 	@GetMapping("/nuevo")
 public ModelAndView crearEmpleador(Model model)
@@ -50,11 +56,23 @@ public ModelAndView crearEmpleador(Model model)
 	}
 	
 	@GetMapping("/home")
-	public ModelAndView homeEmpleador(Model model) {
+	public ModelAndView homeEmpleador(Model model,Principal principal) {
 		
 		ModelAndView mav = new ModelAndView("home_empleador");
-		mav.addObject("lista", ofertaService.getListaOferta());
+		mav.addObject("lista", ofertaService.getListaOfertaEmpleador(empleadorService.getId(Long.parseLong(principal.getName()))));
 		return mav;
 	}
+	@GetMapping("/postulantes")
+	public ModelAndView verPostulantes(Model model,Principal principal) {
+		
+		//ModelAndView mav = new ModelAndView("lista_postulantes");
+		ModelAndView mav = new ModelAndView("lista_postulantes");
+		Iterable<Postulante> listaPostulante = empleadorService.getListaPostulante(empleadorService.getId(Long.parseLong(principal.getName())));
+		
+		//mav.addObject("lista", listaPostulante);
+		//empleadorService.getListaPostulante(empleadorService.getId(Long.parseLong(principal.getName())));
+		return mav;
+	}
+
 
 }

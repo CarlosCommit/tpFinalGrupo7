@@ -17,17 +17,6 @@
 	<br>
 	<form th:action="@{/oferta/guardar}" method="POST" th:object="${oferta}">
 	
-	<div class="mb-3">
-					<label for="empleadorId" class="form-label">Empleador</label> 
-					<select th:field="*{empleador.cuit}" class="form-control" id="empleadorId">
-						<option th:each="empleador : ${empleadores}"
-							th:value="${empleador.cuit}"
-							th:text="${empleador.cuit}"
-						/>
-					</select>
-					<div class="text-danger" th:if="${#fields.hasErrors('empleador')}" th:errors="*{epleador}"></div>
-				</div>
-	
 	
 	<div class="mb-3">
   <label for="puestoid" class="form-label">Puesto Requerido</label>
@@ -45,6 +34,12 @@
   <div class="text-danger" th:if="${#fields.hasErrors('tareas')}" th:errors="*{tareas}"></div>
 	</div>
 	<div class="mb-3">
+	<div class="mb-3">
+  <label for="provinciaid" class="form-label">Provincia para el puesto</label>
+  <input th:field="*{provincia}" type="text" class="form-control" id="provinciaid" placeholder="Ingrese la Provincia">
+  <div class="text-danger" th:if="${#fields.hasErrors('provincia')}" th:errors="*{provincia}"></div>
+	</div>
+	
   <label for="datosContacto" class="form-label">Datos de contacto</label>
   <input th:field="*{datosContacto}" type="text" class="form-control" id="datosContacto" placeholder="Ingrese datos de contacto">
   <div class="text-danger" th:if="${#fields.hasErrors('datosContacto')}" th:errors="*{datosContacto}"></div>
@@ -63,6 +58,11 @@
   <label for="salarioId" class="form-label">Salario</label>
   <input th:field="*{salario}" type="number" class="form-control" id="salarioId" placeholder="Ingrese salario">
   <div class="text-danger" th:if="${#fields.hasErrors('salario')}" th:errors="*{salario}"></div>
+	</div>
+	<div class="mb-3">
+	<label for="vacanteId" class="form-label">Vacantes</label>
+  <input th:field="*{vacante}" type="number" class="form-control" id="vacanteId" placeholder="Ingrese cantidad de vacantes disponibles">
+  <div class="text-danger" th:if="${#fields.hasErrors('vacante')}" th:errors="*{vacante}"></div>
 	</div>
 	<div class="mb-3">
   <label for="beneficioId" class="form-label">Beneficios</label>

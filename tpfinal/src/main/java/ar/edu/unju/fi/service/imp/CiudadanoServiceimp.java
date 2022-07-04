@@ -2,6 +2,8 @@ package ar.edu.unju.fi.service.imp;
 
 
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -38,6 +40,12 @@ public class CiudadanoServiceimp implements ICiudadanoService {
 	public void eliminarCiudadano() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Optional<Ciudadano> buscarId(long id) {
+		Optional<Ciudadano> ciudadano = ciudadanoDaoImp.findByCiudadanoId(id);
+		return ciudadano;
 	}
 
 }

@@ -1,5 +1,7 @@
 package ar.edu.unju.fi.service.imp;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +15,10 @@ public class CvServiceImp implements ICvService {
 	ICvDAO cvDaoImp;
 	
 	@Override
-	public Cv BuscarCv(Long id) {
+	public Optional<Cv> BuscarCv(Long id) {
 		
-		return cvDaoImp.findById(id).get();
+		Optional<Cv> curriculum = cvDaoImp.findByIdCiudadano(id);
+		return curriculum;
 	}
 
 	@Override

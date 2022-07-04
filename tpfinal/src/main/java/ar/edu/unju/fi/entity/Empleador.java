@@ -2,20 +2,25 @@ package ar.edu.unju.fi.entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -30,7 +35,7 @@ public class Empleador implements Serializable {
 	@Id
 	@Column(name="emp_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private long id;
 	@Column(name="emp_razon")
 	@NotEmpty
 	private String razonSocial; 
@@ -58,16 +63,19 @@ public class Empleador implements Serializable {
 	@NotEmpty
 	@Column(name="emp_descripcion")
 	private String descripcion;
+	
+	@Autowired
 	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name="usuario_id")
 	private Usuario usuario;
-	
+
+
 	public Empleador()
 	{
 		
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 

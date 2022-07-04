@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -30,13 +31,15 @@ public class Oferta implements Serializable{
 	@Column(name="ofe_id")
 	private Long id;
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="emp_cuit")
+	@JoinColumn(name="emp_id")
 	private Empleador empleador;
-	@Column(name="ofe_empleador")
+	
 	@OneToMany(cascade = CascadeType.ALL,
 	           fetch = FetchType.EAGER)
-	private List<Ciudadano> ciudadanos;
+	private List<Ciudadano> ciudadanos;	
+	
 	@Column(name="ofe_vacante")
+	@NotNull
 	private int vacante; 
 	@Column(name="ofe_puesto")
 	@NotEmpty
@@ -64,10 +67,19 @@ public class Oferta implements Serializable{
 	private String beneficios; 
 	@Column(name="ofe_disponible")
 	private boolean disponible;
+	@Column(name="ofe_provincia")
+	private String provincia;
 	
 	
 	
 	
+	
+	public String getProvincia() {
+		return provincia;
+	}
+	public void setProvincia(String provincia) {
+		this.provincia = provincia;
+	}
 	public Oferta()
 	{
 		

@@ -3,11 +3,14 @@ package ar.edu.unju.fi.entity;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
@@ -53,6 +56,16 @@ import org.springframework.format.annotation.DateTimeFormat;
 		@Column(name="cv_eduacion")
 		@NotEmpty
 		private String educacion;
+		@OneToOne(cascade = {CascadeType.ALL})
+		@JoinColumn(name = "ciudadano_id")
+		private Ciudadano ciudadano;
+		
+		public Ciudadano getCiudadano() {
+			return ciudadano;
+		}
+		public void setCiudadano(Ciudadano ciudadano) {
+			this.ciudadano = ciudadano;
+		}
 		public Long getId() {
 			return id;
 		}

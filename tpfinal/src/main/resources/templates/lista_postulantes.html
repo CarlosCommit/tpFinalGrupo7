@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+<title>Lista de Docentes</title>
+</head>
+<body>
+
+
+<div class="cont">
+<!-- INICIO DE TABLA -->
+<div class="container">
+			<br>
+			<p class="h4 mb-10">Candidatos</p>
+			<br>
+			<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+			   <a th:href="@{/candidato/nuevo}" id="nuevo" class="btn btn-primary">Nuevo</a>
+			</div>
+			<br>
+			<div class="col-12 d-flex justify-content-center">
+				<table class="table table-striped table-hover">
+						<tr>
+							<th>Nombre</th>
+							<th>Codigo</th>
+							<th>Genero</th>
+							<th>Descripción</th>
+							<th>Numero de votos</th>
+							<th>Opciones</th>
+						</tr>	
+						<tr th:each="docente: ${lista}">
+							<td th:text="${ciudadano.id}"></td>
+							
+							
+							
+						</tr>
+					</table>
+				<br><br>
+				
+			</div>
+		
+		</div>
+		
+		<!-- FIN DE TABLA -->
+		</div>
+		
+    <script src="/webjars/jquery/jquery.min.js" type="text/javascript"></script>
+	<script src="/webjars/popper.js/umd/popper.min.js" type="text/javascript"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+
+		
+</body>
+</html>
