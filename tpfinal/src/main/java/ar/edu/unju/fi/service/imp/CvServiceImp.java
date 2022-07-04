@@ -1,5 +1,6 @@
 package ar.edu.unju.fi.service.imp;
 
+import java.security.Principal;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,17 @@ public class CvServiceImp implements ICvService {
 		return new Cv();
 	}
 
-
+	
+	public void mapear(Cv curriculum,Cv curri) {
+		curri.setDatAdicional(curriculum.getDatAdicional());
+		curri.setEducacion(curriculum.getEducacion());
+		curri.setDni(curriculum.getDni());
+		curri.setFechaNacimiento(curriculum.getFechaNacimiento());
+		curri.setEmail(curriculum.getEmail());
+		curri.setExLaboral(curriculum.getExLaboral());
+		curri.setInfoComplementaria(curriculum.getInfoComplementaria());
+		curri.setNombre(curriculum.getNombre());
+		
+	}
 
 }

@@ -9,9 +9,11 @@
 </head>
 <body>
 	
-	<div class="container col-4">
+	<div class="container col-8">
+		<div class="car">
+		<div class="container col-6">
 	<br>
-	<h4>Nuevo ciudadano</h4>
+	<h4 class="text-center">Nuevo ciudadano</h4>
 	<br>
 	<form th:action="@{/ciudadano/guardar}" method="POST" th:object="${ciudadano}">
 	
@@ -50,7 +52,6 @@
 	<div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">Contraseña</label>
   <input th:field="*{usuario.passw}" type="text" class="form-control" id="estadioid" placeholder="Ingrese contraseña">
-  
 	</div>
 	<div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">Numero de tramite</label>
@@ -63,7 +64,8 @@
 	</div>
 	</form>
 	</div>
-	
+	</div>
+	</div>
 	
 
 	
