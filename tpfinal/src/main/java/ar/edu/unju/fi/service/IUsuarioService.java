@@ -1,5 +1,8 @@
 package ar.edu.unju.fi.service;
 
-public class IUsuarioService {
+import ar.edu.unju.fi.entity.Usuario;
 
+public interface IUsuarioService {
+
+	public Usuario getUsuario();
 }

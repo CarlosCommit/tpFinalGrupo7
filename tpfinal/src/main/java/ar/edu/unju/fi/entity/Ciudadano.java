@@ -3,16 +3,20 @@ package ar.edu.unju.fi.entity;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -27,9 +31,6 @@ public class Ciudadano implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ciu_id")
 	private Long id;
-	@Column(name="ciu_dni")
-    @Min(value=1,message="no puede ser menor a 1000000")
-	private int dni;
 	@Column(name="ciu_email")
 	@NotEmpty
 	private String email;
@@ -45,26 +46,14 @@ public class Ciudadano implements Serializable {
 	@Column(name="ciu_fecha")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate fechaNacimiento;
-	@Column(name="ciu_passw")
-	@NotEmpty
-	private String passw;
 	@Column(name="ciu_tramite")
 	@NotEmpty
 	private String numeroTramite;
-	@Column(name="ciu_tipo")
-	private String tipo = "ciudadano";
+	@Autowired
+	@OneToOne(cascade = {CascadeType.ALL})
+	@JoinColumn(name = "usuario_id")
+	private Usuario usuario;
 	
-	public String getTipo() {
-		return tipo;
-	}
-
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
-
-
-
 	
 	public Ciudadano()
 	{
@@ -72,12 +61,7 @@ public class Ciudadano implements Serializable {
 	}
 	
 	
-	public int getDni() {
-		return dni;
-	}
-	public void setDni(int dni) {
-		this.dni = dni;
-	}
+	
 	public String getEmail() {
 		return email;
 	}
@@ -108,12 +92,7 @@ public class Ciudadano implements Serializable {
 	public void setFechaNacimiento(LocalDate fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
-	public String getPassw() {
-		return passw;
-	}
-	public void setPassw(String passw) {
-		this.passw = passw;
-	}
+
 	public String getNumeroTramite() {
 		return numeroTramite;
 	}
@@ -129,6 +108,21 @@ public class Ciudadano implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	
 	

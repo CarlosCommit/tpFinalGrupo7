@@ -8,17 +8,11 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/usuario")
 public class UsuarioController {
-/*
-	@GetMapping("/nuevo/empleador")
-	public ModelAndView getFormularioUsuario()
+
+	@GetMapping("/nuevo")
+	public String elegirTipoDeUsuario()
 	{
-	  	ModelAndView mav = new ModelAndView("alta_empleador");
+	  	return "tipo_cuenta";
 	}
 	
-	@GetMapping("/nuevo/ciudadano")
-	public ModelAndView getFormularioCiudadano("alta_ciudadano");
-	{
-	  	
-	}
-*/	
 }

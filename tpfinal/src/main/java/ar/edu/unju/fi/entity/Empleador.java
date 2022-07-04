@@ -3,11 +3,14 @@ package ar.edu.unju.fi.entity;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
@@ -25,12 +28,9 @@ public class Empleador implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name="emp_cuit")
-	@NotNull @Min(value=1,message="no puede ser menor a 1000000")
-	private int cuit; 
-	@Column(name="emp_passw")
-	@NotEmpty
-	private String passw;
+	@Column(name="emp_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 	@Column(name="emp_razon")
 	@NotEmpty
 	private String razonSocial; 
@@ -58,81 +58,106 @@ public class Empleador implements Serializable {
 	@NotEmpty
 	@Column(name="emp_descripcion")
 	private String descripcion;
+	@OneToOne(cascade = {CascadeType.ALL})
+	@JoinColumn(name="usuario_id")
+	private Usuario usuario;
 	
 	public Empleador()
 	{
 		
 	}
-	public int getCuit() {
-		return cuit;
+
+	public int getId() {
+		return id;
 	}
-	public void setCuit(int cuit) {
-		this.cuit = cuit;
+
+	public void setId(int id) {
+		this.id = id;
 	}
-	public String getPassw() {
-		return passw;
-	}
-	public void setPassw(String passw) {
-		this.passw = passw;
-	}
+
 	public String getRazonSocial() {
 		return razonSocial;
 	}
+
 	public void setRazonSocial(String razonSocial) {
 		this.razonSocial = razonSocial;
 	}
+
 	public String getNombreComercial() {
 		return nombreComercial;
 	}
+
 	public void setNombreComercial(String nombreComercial) {
 		this.nombreComercial = nombreComercial;
 	}
+
 	public LocalDate getInicioActividad() {
 		return inicioActividad;
 	}
+
 	public void setInicioActividad(LocalDate inicioActividad) {
 		this.inicioActividad = inicioActividad;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public int getTelefono() {
 		return telefono;
 	}
+
 	public void setTelefono(int telefono) {
 		this.telefono = telefono;
 	}
+
 	public String getDomicilio() {
 		return domicilio;
 	}
+
 	public void setDomicilio(String domicilio) {
 		this.domicilio = domicilio;
 	}
+
 	public String getProvincia() {
 		return provincia;
 	}
+
 	public void setProvincia(String provincia) {
 		this.provincia = provincia;
 	}
+
 	public String getWeb() {
 		return web;
 	}
+
 	public void setWeb(String web) {
 		this.web = web;
 	}
+
 	public String getDescripcion() {
 		return descripcion;
 	}
+
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
 	
 
 }

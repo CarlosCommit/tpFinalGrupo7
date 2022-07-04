@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unju.fi.entity.Ciudadano;
 import ar.edu.unju.fi.service.ICiudadanoService;
 import ar.edu.unju.fi.service.IOfertaService;
+import ar.edu.unju.fi.service.IUsuarioService;
 
 @Controller
 @RequestMapping("/ciudadano")
@@ -23,14 +24,15 @@ public class CiudadanoController {
 	ICiudadanoService ciudadanoService;
 	@Autowired
 	IOfertaService ofertaService;
+	@Autowired
+	IUsuarioService usuarioService;
 
-private int id;
 
 @GetMapping("/nuevo")
 public ModelAndView nuevociudadano(Model model) {
 	ModelAndView mav = new ModelAndView("alta_ciudadano");
 	
-	//mav.addAllObjects(usuario);
+	//mav.addObject("usuario",usuarioService.getUsuario());
 	mav.addObject("ciudadano", ciudadanoService.getCiudadano());
 	
 	
@@ -46,7 +48,7 @@ public ModelAndView guardarciudadano(@Validated @ModelAttribute("ciudadano")Ciud
     }
 	
 	ciudadanoService.guardarCiudadano(ciudadano);
-ModelAndView mav = new ModelAndView("redirect:/ciudadano/home");
+ModelAndView mav = new ModelAndView("redirect:/login");
 return mav;
 }
 

@@ -11,31 +11,34 @@
 	
 	<div class="container col-4">
 	<h1>Iniciar Sesión</h1>
-	<form th:action="@{/ciudadano/home}" method="POST" th:object="${ciudadano}">
 	
-	
-	
-	<div class="mb-3">
-  <label for="dni" class="form-label">Dni</label>
-  
-  <input th:field="*{dni}" type="number" class="form-control" id="codigoid" placeholder="Ingrese el Dni" name="dni">
-  
-  <div class="text-danger" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div>
-	</div>
+	<form th:action="@{/login}" method="post">
+	  <div class="mb-3">
+        <label for="dni" class="form-label">Dni</label>
+        <input name="username" type="number" class="form-control" id="codigoid" placeholder="Ingrese el Dni" > 
+ 	</div>
+
 	<div class="mb-3">
   <label for="passw" class="form-label">Contraseña</label>
-  <input th:field="*{passw}" type="text" class="form-control" id="estadioid" name="passw" placeholder="Ingrese contraseña">
-  <div class="text-danger" th:if="${#fields.hasErrors('passw')}" th:errors="*{passw}"></div>
+  <input type="text" class="form-control" id="estadioid" name="password" placeholder="Ingrese contraseña">
 	</div>
+	
+	
+	
 	<br>
-	 <a th:href="@{/ciudadano/nuevo}">Crear usuario</a>
+	 <a th:href="@{/usuario/nuevo}">Crear usuario</a>
 	 <br>
 	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 					<button class="btn btn-primary me-md-2" type="submit">Ingresar</button>
 					 <a th:href="@{/inicio}" id="cancel" class="btn btn-secondary">Cancelar</a>
 	</div>
 	</form>
+	
 	</div>
+		
+	
+
+	
 	
 	
 

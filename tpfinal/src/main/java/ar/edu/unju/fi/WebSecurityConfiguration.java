@@ -14,15 +14,18 @@ import ar.edu.unju.fi.service.imp.LoginUsuarioServiceImp;
 @Configuration
 public class WebSecurityConfiguration {
 
+	@Autowired
+	private AutenticacionSuccesHandler autenticacion;
+	
 	String[] resources = new String[] { "/include/**", "/css/**", "/icons/**", "/images/**", "/js/**", "/layer/**",
 	"/webjars/**" };
 	
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		
-		http.authorizeRequests().antMatchers("/login").permitAll().antMatchers("/", "/home", "/ciudadano/nuevo","/ciudadano/guardar").permitAll().antMatchers(resources).permitAll().anyRequest()
-		.authenticated().and().formLogin().loginPage("/login/ciudadano").permitAll().defaultSuccessUrl("/ciudadano/home/")
-		.failureUrl("/login?error=true").usernameParameter("dni").passwordParameter("password").and().logout()
+		http.authorizeRequests().antMatchers("/login").permitAll().antMatchers("/", "/home", "/ciudadano/nuevo","/ciudadano/guardar","/empleador/nuevo","/empleador/guardar","/usuario/**").permitAll().antMatchers(resources).permitAll().anyRequest()
+		.authenticated().and().formLogin().loginPage("/login").permitAll().successHandler(autenticacion)
+		.failureUrl("/login?error=true").usernameParameter("username").passwordParameter("password").and().logout()
 		.permitAll();
 
 http.headers().frameOptions().sameOrigin();

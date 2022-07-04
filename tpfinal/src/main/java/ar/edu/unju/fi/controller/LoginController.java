@@ -10,23 +10,15 @@ import ar.edu.unju.fi.service.ICiudadanoService;
 import ar.edu.unju.fi.service.IEmpleadorService;
 
 @Controller
-@RequestMapping("/login")
 public class LoginController {
 
 	@Autowired
 	ICiudadanoService ciudadanoService;
 	@Autowired
 	IEmpleadorService empleadorService;
-@GetMapping("/ciudadano")
+	
+@GetMapping("/login")
 public String loginCiudadano(Model model) {
-	model.addAttribute("ciudadano", ciudadanoService.getCiudadano());
 	return "login_ciudadano";
 }
-
-@GetMapping("/empleador")
-public String loginEmpleador(Model model) {
-	model.addAttribute("empleador", empleadorService.getEmpleador() );
-	return "login_empleador";
-}
-
 }

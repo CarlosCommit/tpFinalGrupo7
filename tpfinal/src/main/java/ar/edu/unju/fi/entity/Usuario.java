@@ -11,17 +11,21 @@ public class Usuario {
 
 	@Id
 	@Column(name="usu_id")
-	private int user;
+	private long user;
 	@Column(name="usu_passw")
 	private String passw;
 	@Column(name="usu_tipo")
-	private int rol;
+	private String rol;
 	
-	public int getUserName() {
+
+	public long getUser() {
 		return user;
 	}
-	public void setUserName(int userName) {
-		this.user = userName;
+	public void setUser(long user) {
+		this.user = user;
+	}
+	public void setUser(int user) {
+		this.user = user;
 	}
 	public String getPassw() {
 		return passw;
@@ -29,11 +33,11 @@ public class Usuario {
 	public void setPassw(String passw) {
 		this.passw = passw;
 	}
-	public int getRol() {
+	public String getRol() {
 		return rol;
 	}
-	public void setRol(int rol) {
+	public void setRol(String rol) {
 		this.rol = rol;
 	}
-	
+
 }

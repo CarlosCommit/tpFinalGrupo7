@@ -3,6 +3,7 @@ package ar.edu.unju.fi.service.imp;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unju.fi.entity.Ciudadano;
@@ -16,8 +17,11 @@ public class CiudadanoServiceimp implements ICiudadanoService {
 
 	@Override
 	public void guardarCiudadano(Ciudadano ciudadano) {
+		ciudadano.getUsuario().setRol("CIUDADANO");
+		String passwd = ciudadano.getUsuario().getPassw();
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(4);
+		ciudadano.getUsuario().setPassw(bCryptPasswordEncoder.encode(passwd));
 		ciudadanoDaoImp.save(ciudadano);
-
 	}
 
 	@Override

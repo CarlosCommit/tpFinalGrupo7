@@ -18,8 +18,7 @@
 			
 				<div class="mb-3">
 					<label for="cuit" class="form-label">Cuit</label> 
-					<input th:field=*{cuit} type="number" class="form-control" id="cuit" placeholder="Ingrese Cuit">
-					<div class="text-danger" th:if="${#fields.hasErrors('cuit')}" th:errors="*{cuit}"></div>
+					<input th:field=*{usuario.user} type="number" class="form-control" id="cuit" placeholder="Ingrese Cuit">
 				</div>
 				<div class="mb-3">
 					<label for="razonSocial" class="form-label">Razon Social</label> 
@@ -73,8 +72,8 @@
 				</div>
 				<div class="mb-3">
 					<label for="passw" class="form-label">Contraseña</label> 
-					<input th:field=*{passw} type="text" class="form-control" id="passw" placeholder="Ingrese una Contraseña">
-					<div class="text-danger" th:if="${#fields.hasErrors('passw')}" th:errors="*{passw}"></div>
+					<input th:field=*{usuario.passw} type="text" class="form-control" id="passw" placeholder="Ingrese una Contraseña">
+					
 				</div>
 								
 				<div class="d-grid gap-2 d-md-flex justify-content-md-end">

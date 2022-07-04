@@ -24,9 +24,9 @@ public class LoginUsuarioServiceImp implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
-		Usuario usuarioEncontrado = iUsuario.findByUser(Long.parseLong(username)).orElseThrow(()-> new UsernameNotFoundException("Usuario no existe en la BD"));
+		Usuario usuarioEncontrado = iUsuario.findById(Long.parseLong(username)).orElseThrow(()-> new UsernameNotFoundException("Usuario no existe en la BD"));
 		List<GrantedAuthority> tipos = new ArrayList<>();
-		GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(String.valueOf(usuarioEncontrado.getRol())); 
+		GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(usuarioEncontrado.getRol()); 
 	    tipos.add(grantedAuthority);
 	    
 	    UserDetails user = (UserDetails) new User(username, usuarioEncontrado.getPassw(),tipos);

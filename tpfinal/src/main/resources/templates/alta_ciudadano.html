@@ -22,9 +22,9 @@
 	
 	<div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">Dni</label>
-  <input th:field="*{dni}" type="number" class="form-control" id="codigoid" placeholder="Ingrese el Dni">
-  <div class="text-danger" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div>
-	</div>
+  <input th:field="*{usuario.user}" type="number" class="form-control" id="estadioid" placeholder="Ingrese contraseña">
+</div>
+ 
 	<div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">Email</label>
   <input th:field="*{email}" type="email" class="form-control" id="nombreid" placeholder="Ingrese el Email">
@@ -52,8 +52,8 @@
 	</div>
 	<div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">Contraseña</label>
-  <input th:field="*{passw}" type="text" class="form-control" id="estadioid" placeholder="Ingrese contraseña">
-  <div class="text-danger" th:if="${#fields.hasErrors('passw')}" th:errors="*{passw}"></div>
+  <input th:field="*{usuario.passw}" type="text" class="form-control" id="estadioid" placeholder="Ingrese contraseña">
+  
 	</div>
 	<div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">Numero de tramite</label>
