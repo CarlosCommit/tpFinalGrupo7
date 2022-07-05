@@ -48,6 +48,9 @@
   </div>
 </div>
 </div>
+<div th:if="${#lists.isEmpty(lista)}">
+                <h2>No creaste ninguna Oferta Aun</h2>
+            </div>
 
 
 	<footer th:replace="/layouts/footer :: footer"></footer>

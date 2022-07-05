@@ -34,11 +34,8 @@
 							<td th:text="${postulante.ciudadano.usuario.user}"></td>
 							<td th:text="${postulante.ciudadano.email}"></td>
 							<td th:text="${postulante.oferta.puestoRequerido}"></td>
-							<td>
-							<a th:href="@{/oferta/contratar/}+${postulante.oferta.id}+@{/}+${postulante.ciudadano.usuario.user}"  class="btn btn-primary">Contratar</a>
-							
-							</td>
-							
+							<td><a th:href="@{/empleador/verCurriculum/}+${postulante.ciudadano.id}"  class="btn btn-primary">Ver Curriculum</a></td>
+							<td><a th:href="@{/ciudadano/contratar/}+${postulante.oferta.id}+@{/}+${postulante.ciudadano.usuario.user}"  class="btn btn-primary">Contratar</a></td>
 							
 				
 						</tr>

@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unju.fi.entity.Empleador;
 import ar.edu.unju.fi.entity.Postulante;
 import ar.edu.unju.fi.service.ICiudadanoService;
+import ar.edu.unju.fi.service.ICvService;
 import ar.edu.unju.fi.service.IEmpleadorService;
 import ar.edu.unju.fi.service.IOfertaService;
 import ar.edu.unju.fi.service.IPostuladoService;
@@ -32,6 +34,8 @@ public class EmpleadorController {
 	IOfertaService ofertaService;
 	@Autowired
 	IPostuladoService postuladoService;
+	@Autowired
+    ICvService cvService;
 	
 	@GetMapping("/nuevo")
 public ModelAndView crearEmpleador(Model model)
@@ -68,6 +72,12 @@ public ModelAndView crearEmpleador(Model model)
 		mav.addObject("lista",empleadorService.getListaPostulante(empleadorService.getId(Long.parseLong(principal.getName()))));
 		return mav;
 	}
-
+	
+	@GetMapping("/verCurriculum/{id}")
+	public ModelAndView verPostulantes(@PathVariable(name="id")long id,Principal principal) {
+		ModelAndView mav = new ModelAndView("cv_mostrar");
+		mav.addObject("curriculum",cvService.BuscarCv(id).get() );
+		return mav;
+	}
 
 }
