@@ -1,0 +1,92 @@
+	<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+<title>Editar Oferta</title>
+</head>
+<body>
+	
+	<header th:replace="/layouts/header :: header"></header>
+	
+	<div class="container col-8">
+		<div class="car">
+		<div class="container col-6">
+	<br>
+	<h4 class="text-center">Edicion de Oferta laboral</h4>
+	<br>
+	<form th:action="@{/oferta/guardar}" method="POST" th:object="${oferta}">
+	
+	
+	<div class="mb-3">
+  <label for="puestoid" class="form-label">Puesto Requerido</label>
+  <input th:field="*{puestoRequerido}" type="text" class="form-control" id="puestoid" placeholder="Ingrese el puesto requerido">
+  <div class="text-danger" th:if="${#fields.hasErrors('puestoRequerido')}" th:errors="*{puestoRequerido}"></div>
+	</div>
+	<div class="mb-3">
+  <label for="resumenid" class="form-label">Resumen del puesto</label>
+  <input th:field="*{resumenPuesto}" type="text" class="form-control" id="resumenid" placeholder="Ingrese resumen del puesto">
+  <div class="text-danger" th:if="${#fields.hasErrors('resumenPuesto')}" th:errors="*{resumenPuesto}"></div>
+	</div>
+	<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Tareas</label>
+  <input th:field="*{tareas}" type="text" class="form-control" id="" placeholder="Ingrese tareas">
+  <div class="text-danger" th:if="${#fields.hasErrors('tareas')}" th:errors="*{tareas}"></div>
+	</div>
+	<div class="mb-3">
+	<div class="mb-3">
+  <label for="provinciaid" class="form-label">Provincia para el puesto</label>
+  <input th:field="*{provincia}" type="text" class="form-control" id="provinciaid" placeholder="Ingrese la Provincia">
+  <div class="text-danger" th:if="${#fields.hasErrors('provincia')}" th:errors="*{provincia}"></div>
+	</div>
+	
+  <label for="datosContacto" class="form-label">Datos de contacto</label>
+  <input th:field="*{datosContacto}" type="text" class="form-control" id="datosContacto" placeholder="Ingrese datos de contacto">
+  <div class="text-danger" th:if="${#fields.hasErrors('datosContacto')}" th:errors="*{datosContacto}"></div>
+	</div>
+	<div class="mb-3">
+  <label for="jornadaId" class="form-label">Jornada</label>
+  <input th:field="*{jornada}" type="number" class="form-control" id="jornadaId" placeholder="Ingrese jornada laboral en horas">
+  <div class="text-danger" th:if="${#fields.hasErrors('jornada')}" th:errors="*{jornada}"></div>
+	</div>
+	<div class="mb-3">
+  <label for="requisitosId" class="form-label">Requisitos</label>
+  <input th:field="*{requisitos}" type="text" class="form-control" id="requisitosId" placeholder="Ingrese requisitos">
+  <div class="text-danger" th:if="${#fields.hasErrors('requisitos')}" th:errors="*{requisitos}"></div>
+	</div>
+	<div class="mb-3">
+  <label for="salarioId" class="form-label">Salario</label>
+  <input th:field="*{salario}" type="number" class="form-control" id="salarioId" placeholder="Ingrese salario">
+  <div class="text-danger" th:if="${#fields.hasErrors('salario')}" th:errors="*{salario}"></div>
+	</div>
+	<div class="mb-3">
+	<label for="vacanteId" class="form-label">Vacantes</label>
+  <input th:field="*{vacante}" type="number" class="form-control" id="vacanteId" placeholder="Ingrese cantidad de vacantes disponibles">
+  <div class="text-danger" th:if="${#fields.hasErrors('vacante')}" th:errors="*{vacante}"></div>
+	</div>
+	<div class="mb-3">
+  <label for="beneficioId" class="form-label">Beneficios</label>
+  <input th:field="*{beneficios}" type="text" class="form-control" id="beneficioId" placeholder="Ingrese beneficios">
+  <div class="text-danger" th:if="${#fields.hasErrors('beneficios')}" th:errors="*{beneficios}"></div>
+	</div>
+	
+	
+	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+					<button class="btn btn-primary me-md-2" type="submit">Guardar</button>
+					 <a th:href="@{/empleador/home}" id="cancel" class="btn btn-secondary">Cancelar</a>
+	</div>
+	</form>
+	</div>
+	</div>
+	</div>
+	
+	
+
+	<footer th:replace="/layouts/footer :: footer"></footer>
+	<script src="/webjars/jquery/jquery.min.js" type="text/javascript"></script>
+	<script src="/webjars/popper.js/umd/popper.min.js" type="text/javascript"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+</body>
+</html>

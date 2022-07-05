@@ -1,7 +1,7 @@
 package ar.edu.unju.fi.service.imp;
 
-import java.security.Principal;
-import java.util.List;
+
+import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import ar.edu.unju.fi.entity.Ciudadano;
 import ar.edu.unju.fi.entity.Oferta;
-import ar.edu.unju.fi.entity.Postulante;
+import ar.edu.unju.fi.entity.Provincia;
 import ar.edu.unju.fi.repository.IEmpleadorDAO;
 import ar.edu.unju.fi.repository.IOfertaDAO;
 import ar.edu.unju.fi.repository.IPostuladosDAO;
@@ -44,18 +44,28 @@ public class OfertaServiceimp implements IOfertaService {
 	public void editarOferta(Oferta unaOferta) throws Exception{
 		Oferta oferta = encontrar(unaOferta.getId());
 		mapearOferta(unaOferta, oferta);
-	    ofertaDaoImp.save(oferta);
+		 ofertaDaoImp.save(oferta);
 	}
 	
   @Override
    public void mapearOferta(Oferta desde, Oferta hacia)
 {
- 
+ hacia.setPuestoRequerido(desde.getPuestoRequerido());
+ hacia.setBeneficios(desde.getBeneficios());
+ hacia.setDatosContacto(desde.getDatosContacto());
+ hacia.setJornada(desde.getJornada());
+ hacia.setProvincia(desde.getProvincia());
+ hacia.setRequisitos(desde.getRequisitos());
+ hacia.setResumenPuesto(desde.getResumenPuesto());
+ hacia.setSalario(desde.getSalario());
+ hacia.setTareas(desde.getTareas());
+ hacia.setVacante(desde.getVacante());
+ hacia.setEmpleador(desde.getEmpleador());
 }
   @Override
   public Oferta encontrar(long id) throws Exception {
 	  
-	  return ofertaDaoImp.findById(id).orElseThrow(() -> new Exception("El usuario no existe"));
+	  return ofertaDaoImp.findById(id).orElseThrow(() -> new Exception("La oferta no existe"));
   }
   
 @Override
@@ -91,7 +101,36 @@ public void agregarCiudadanoContratado(Oferta oferta, Ciudadano ciudadano) {
 	ofertaDaoImp.save(oferta);
 }
 
+public ArrayList<Provincia> getProvincias() {
+	 ArrayList<Provincia> provincias = new ArrayList<Provincia>();
+			provincias.add(new Provincia("Jujuy"));
+			provincias.add(new Provincia("Salta"));
+			provincias.add(new Provincia("Tucuman"));
+			provincias.add(new Provincia("San Juan"));
+			provincias.add(new Provincia("La Rioja"));
+			provincias.add(new Provincia("Formosa"));
+			provincias.add(new Provincia("Corrientes"));
+			provincias.add(new Provincia("Chaco"));
+			provincias.add(new Provincia("Chubut"));
+			provincias.add(new Provincia("Santiago Del Estero"));
+			provincias.add(new Provincia("Buenos Aires"));
+			provincias.add(new Provincia("Misiones"));
+			provincias.add(new Provincia("Mendoza"));
+			provincias.add(new Provincia("Santa Cruz"));
+			provincias.add(new Provincia("Entre Rios"));
+			provincias.add(new Provincia("Tierra del Fuego"));
+			provincias.add(new Provincia("Catamarca"));
+			provincias.add(new Provincia("Santa Fe"));
+			provincias.add(new Provincia("Rio Negro"));
+			provincias.add(new Provincia("La Pampa"));
+			provincias.add(new Provincia("Neuquen"));
+			provincias.add(new Provincia("Cordoba"));
+			provincias.add(new Provincia("San Luis"));
+			
+			
 
+			return provincias;
+	}
 
 
 }

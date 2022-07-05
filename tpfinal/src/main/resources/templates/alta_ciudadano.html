@@ -21,28 +21,16 @@
 	
 	<div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">Dni</label>
-  <input th:field="*{usuario.user}" type="number" class="form-control" id="estadioid" placeholder="Ingrese contraseña">
+  <input th:field="*{usuario.user}" type="number" class="form-control" id="estadioid" placeholder="Ingrese dni">
 </div>
- 
+ <div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Contraseña</label>
+  <input th:field="*{usuario.passw}" type="password" class="form-control" id="estadioid" placeholder="Ingrese contraseña">
+	</div>
 	<div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">Email</label>
-  <input th:field="*{email}" type="email" class="form-control" id="nombreid" placeholder="Ingrese el Email">
+  <input th:field="*{email}" type="email" class="form-control" id="emailid" placeholder="Ingrese el Email">
   <div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
-	</div>
-	<div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Estado civil</label>
-  <input th:field="*{estadoCivil}" type="text" class="form-control" id="paisid" placeholder="Ingrese el Estado Civil">
-  <div class="text-danger" th:if="${#fields.hasErrors('estadoCivil')}" th:errors="*{estadoCivil}"></div>
-	</div>
-	<div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Provincia</label>
-  <input th:field="*{provincia}" type="text" class="form-control" id="estadioid" placeholder="Ingrese provincia">
-  <div class="text-danger" th:if="${#fields.hasErrors('provincia')}" th:errors="*{provincia}"></div>
-	</div>
-	<div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Telefono</label>
-  <input th:field="*{telefono}" type="number" class="form-control" id="estadioid" placeholder="Ingrese telefono">
-  <div class="text-danger" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></div>
 	</div>
 	<div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">Fecha de nacimiento</label>
@@ -50,8 +38,24 @@
   <div class="text-danger" th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}"></div>
 	</div>
 	<div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Contraseña</label>
-  <input th:field="*{usuario.passw}" type="text" class="form-control" id="estadioid" placeholder="Ingrese contraseña">
+  <label for="exampleFormControlInput1" class="form-label">Estado civil</label>
+  <input th:field="*{estadoCivil}" type="text" class="form-control" id="estadocivilid" placeholder="Ingrese el Estado Civil">
+  <div class="text-danger" th:if="${#fields.hasErrors('estadoCivil')}" th:errors="*{estadoCivil}"></div>
+	</div>
+	<div class="mb-3">
+  
+					<label for="em" class="form-label">Provincia</label> 
+					<select th:field="*{provincia}" class="form-control" id="empleadorId">
+						<option th:each="lista : ${lista}"
+							th:value="${lista.nombre}"
+							th:text="${lista.nombre}"
+						/>
+					</select>		
+	</div>
+	<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Telefono</label>
+  <input th:field="*{telefono}" type="number" class="form-control" id="estadioid" placeholder="Ingrese telefono">
+  <div class="text-danger" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></div>
 	</div>
 	<div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">Numero de tramite</label>

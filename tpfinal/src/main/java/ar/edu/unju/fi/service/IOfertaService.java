@@ -1,10 +1,12 @@
 package ar.edu.unju.fi.service;
 
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import ar.edu.unju.fi.entity.Ciudadano;
 import ar.edu.unju.fi.entity.Oferta;
+import ar.edu.unju.fi.entity.Provincia;
 
 
 
@@ -21,5 +23,5 @@ public interface IOfertaService {
 	 public Iterable<Oferta> getListaOfertaEmpleador(long id);
 	 public Iterable<Oferta> getListaFiltroProvincia(String provincia);
 	 public void agregarCiudadanoContratado(Oferta oferta, Ciudadano ciudadano);
-	 
+	 public ArrayList<Provincia> getProvincias();
 }

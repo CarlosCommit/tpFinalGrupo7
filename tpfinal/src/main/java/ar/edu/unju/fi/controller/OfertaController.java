@@ -87,5 +87,20 @@ public class OfertaController {
 	  return mav;
    }
    
+ 	@GetMapping("/editar/{id}")
+ 	public ModelAndView editarOferta(@PathVariable(value="id")long id,Principal principal) throws Exception {
+ 		ModelAndView mav = new ModelAndView("editar_oferta");
+ 		mav.addObject("oferta",ofertaService.buscarOferta(id).get());
+ 		return mav;
+ 	}
+ 	
+ 	@PostMapping("/modificar")
+ 	public ModelAndView modificarOferta(@ModelAttribute("oferta")Oferta oferta,Principal p) throws Exception {
+ 		ModelAndView mav = new ModelAndView("redirect:/home/empleador");
+ 		oferta.setEmpleador(empleadorService.buscarEmpleador(Long.parseLong(   p.getName()   )).get());
+ 		ofertaService.editarOferta(oferta);
+ 		
+ 		return mav;
+ 	}
    
 }

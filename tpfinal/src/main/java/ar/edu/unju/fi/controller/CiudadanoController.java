@@ -37,6 +37,7 @@ public ModelAndView nuevociudadano(Model model) {
 	
 	//mav.addObject("usuario",usuarioService.getUsuario());
 	mav.addObject("ciudadano", ciudadanoService.getCiudadano());
+	mav.addObject("lista", ofertaService.getProvincias());
 	
 	
 	return mav;
@@ -46,6 +47,7 @@ public ModelAndView nuevociudadano(Model model) {
 public ModelAndView guardarciudadano(@Validated @ModelAttribute("ciudadano")Ciudadano ciudadano, BindingResult bindingResult) {
     if (bindingResult.hasErrors()) {
     	ModelAndView mav = new ModelAndView("alta_ciudadano");
+    	mav.addObject("lista", ofertaService.getProvincias());
     	mav.addObject("ciudadano", ciudadano);
     	return mav;
     }

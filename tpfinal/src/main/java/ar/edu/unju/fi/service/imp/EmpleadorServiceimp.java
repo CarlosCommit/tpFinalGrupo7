@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import ar.edu.unju.fi.entity.Ciudadano;
 import ar.edu.unju.fi.entity.Empleador;
 import ar.edu.unju.fi.entity.Oferta;
 import ar.edu.unju.fi.entity.Postulante;
@@ -92,6 +93,5 @@ public class EmpleadorServiceimp implements IEmpleadorService {
 	
 	} 
 	
-	
-	
+
 }
