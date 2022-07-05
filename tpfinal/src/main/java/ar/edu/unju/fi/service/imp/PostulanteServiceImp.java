@@ -46,4 +46,16 @@ public class PostulanteServiceImp implements IPostuladoService {
 		return postulante;
 	}
 
+	@Override
+	public Optional<Postulante> buscarPostulante(Long id, Long q) {
+		Optional<Postulante> post =  postulanteDaoImp.findByPost(id, q);
+		return post;
+	}
+
+	@Override
+	public void eliminarPostulante(Long id, Long q) {
+		postulanteDaoImp.delete(buscarPostulante(id, q).get());
+		
+	}
+
 }

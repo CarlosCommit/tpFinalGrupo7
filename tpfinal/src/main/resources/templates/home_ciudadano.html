@@ -32,11 +32,8 @@
     aria-expanded="false">
   Menu</button>
   <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-    <li><a class="dropdown-item active"th:href="@{/curriculum/nuevo}">Crear o Modificar Curriculum Vitae</a></li>
-    <li><a class="dropdown-item" href="#">Ver Curriculum Vitae</a></li>
-    <li><a class="dropdown-item" href="#">Cursos online</a></li>
-    <li><hr class="dropdown-divider" /></li>
-    <li><a class="dropdown-item" href="#">Separated link</a></li>
+    <li><a class="dropdown-item" th:href="@{/curriculum/ver}">Ver o Crear Curriculum Vitae</a></li>
+    <li><a class="dropdown-item" th:href="@{/curso/lista}">Cursos online</a></li>
   </ul>
 </div>
 
@@ -111,8 +108,8 @@
 <br>
 </div>-->
 
-<div class="cont">
-<div class="card separar"th:each="oferta: ${lista}">
+<div class="container col-4">
+<div class="card "th:each="oferta: ${lista}">
 
   <img class="card-img-top" th:src="@{/images/trabajo.png}" height="150" alt="Card image cap">
   

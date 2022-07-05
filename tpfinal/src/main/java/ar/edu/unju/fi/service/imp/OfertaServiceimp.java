@@ -80,12 +80,15 @@ public Iterable<Oferta> getListaFiltroProvincia(String provincia) {
 }
 @Override
 public void agregarCiudadanoContratado(Oferta oferta, Ciudadano ciudadano) {
-	List<Ciudadano> ciudadano2 = oferta.getCiudadanos();
-	ciudadano2.add(ciudadano);
-	oferta.setCiudadanos(ciudadano2);
+	//List<Ciudadano> ciudadano2 = oferta.getCiudadanos();
+	//ciudadano2.add(ciudadano);
+	//oferta.setCiudadanos(ciudadano2);
 	oferta.setVacante(oferta.getVacante()-1);
+	oferta.getCiudadanos().add(ciudadano);
+	if (oferta.getVacante()==0) {
+		oferta.setDisponible(false);
+	}
 	ofertaDaoImp.save(oferta);
-	
 }
 
 

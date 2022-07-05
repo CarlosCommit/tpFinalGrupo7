@@ -22,6 +22,7 @@ import ar.edu.unju.fi.entity.Oferta;
 import ar.edu.unju.fi.service.ICiudadanoService;
 import ar.edu.unju.fi.service.IEmpleadorService;
 import ar.edu.unju.fi.service.IOfertaService;
+import ar.edu.unju.fi.service.IPostuladoService;
 
 @Controller
 @RequestMapping("/oferta")
@@ -33,7 +34,8 @@ public class OfertaController {
 	IEmpleadorService empleadorService;
 	@Autowired
 	ICiudadanoService ciudadanoService;
-	
+	@Autowired
+	IPostuladoService postulanteService;
 	
    @GetMapping("/nuevo")
    public ModelAndView crearOferta(Model model,Principal principal)
@@ -75,8 +77,13 @@ public class OfertaController {
    
    public ModelAndView contratar(@PathVariable(name="id") long id,@PathVariable(name="idUsuario")long idUsuario)
    {
-	  ofertaService.agregarCiudadanoContratado( ofertaService.buscarOferta(id).get() ,ciudadanoService.buscarId(idUsuario).get() );
+	 
 	  ModelAndView mav = new ModelAndView("redirect:/empleador/home");
+	  Long idciudadano = ciudadanoService.buscarId(idUsuario).get().getId();
+	  System.out.println(idciudadano);
+	  ofertaService.agregarCiudadanoContratado( ofertaService.buscarOferta(id).get() ,ciudadanoService.buscarId(idUsuario).get() );
+	  postulanteService.eliminarPostulante(idciudadano,id);
+	 
 	  return mav;
    }
    

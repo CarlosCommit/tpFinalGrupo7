@@ -29,11 +29,11 @@ public class Postulante implements Serializable{
 	@Column(name="pos_id")
 	private long id;
 	
-	@ManyToOne(cascade = CascadeType.ALL,
+	@ManyToOne(
 	           fetch = FetchType.EAGER)
 	private Oferta oferta;
 	
-	@ManyToOne(cascade = {CascadeType.ALL},
+	@ManyToOne(
 	           fetch = FetchType.EAGER)
 	private Ciudadano ciudadano;
 	
