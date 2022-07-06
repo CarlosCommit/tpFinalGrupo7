@@ -30,6 +30,15 @@
   
 </div>
 
+<div class="input-group rounded">
+<form  method="POST" th:action="@{/empleador/palabra}" th:object="${puestoLaboral}">
+<br/>
+<label>Busqueda por puesto Requerido</label>
+  <input type="text" class="form-control rounded"  th:field="*{puesto}" placeholder="Ingresar palabra clave para el puesto" aria-label="Search" aria-describedby="search-addon" />
+  <button type="submit"  class="btn btn-outline-light btn-sm px-5">Buscar</button>
+</form>
+
+</div>
 
 
 

@@ -24,6 +24,7 @@ import ar.edu.unju.fi.service.IEmpleadorService;
 import ar.edu.unju.fi.service.IOfertaService;
 import ar.edu.unju.fi.service.IPostuladoService;
 import ar.edu.unju.fi.service.util.Provincia;
+import ar.edu.unju.fi.service.util.PuestoLaboral;
 
 @Controller
 @RequestMapping("/empleador")
@@ -41,6 +42,8 @@ public class EmpleadorController {
     ICvService cvService;
 	@Autowired
 	private Provincia listaProvincia;
+	@Autowired
+	private PuestoLaboral puesto;
 	@GetMapping("/nuevo")
 public ModelAndView crearEmpleador(Model model)
 {
@@ -79,6 +82,7 @@ public ModelAndView crearEmpleador(Model model)
 		ModelAndView mav = new ModelAndView("lista_postulantes");
 		mav.addObject("lista",empleadorService.getListaPostulante(empleadorService.getId(Long.parseLong(principal.getName()))));
 		mav.addObject("listaProvincia",listaProvincia.getLista());
+		mav.addObject("puestoLaboral",puesto);
 		return mav;
 	}
 	@GetMapping("/filtro/{pro}")
@@ -87,10 +91,25 @@ public ModelAndView crearEmpleador(Model model)
 		//le paso el id del empleador conectado(id, no cuit) y le paso la palabra clave para buscar
 		mav.addObject("lista",empleadorService.getListaPostulanteProvincia(empleadorService.getId(Long.parseLong(principal.getName())),pro ));
 		mav.addObject("listaProvincia",listaProvincia.getLista());
-		
+		mav.addObject("puestoLaboral",puesto);
 		
 		return mav;
 	}
+	
+	@PostMapping("/palabra")
+	public ModelAndView guardarEmpleador(@ModelAttribute("puestoLaboral") PuestoLaboral puesto,Principal principal)
+	{
+		ModelAndView mav = new ModelAndView("lista_postulantes");
+		//le paso el id del empleador conectado(id, no cuit) y le paso la palabra clave para buscar
+		System.out.println("jefe".contains("JEFE") );
+		mav.addObject("lista",empleadorService.getListaPostulantePalabra( empleadorService.getId(Long.parseLong(principal.getName())) , puesto.getPuesto() ));
+		mav.addObject("listaProvincia",listaProvincia.getLista());
+		mav.addObject("puestoLaboral",puesto);
+		
+		return mav;
+	}
+	
+	
 	// para ver curriculum del postulado
 	@GetMapping("/verCurriculum/{id}")
 	public ModelAndView verPostulantes(@PathVariable(name="id")long id,Principal principal) {

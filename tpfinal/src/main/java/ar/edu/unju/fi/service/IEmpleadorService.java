@@ -15,4 +15,5 @@ public interface IEmpleadorService {
 	public long getId(long id);
 	public List<Postulante> getListaPostulante(long id);
 	public List<Postulante> getListaPostulanteProvincia(long id,String provincia);
+	public List<Postulante> getListaPostulantePalabra(long id,String palabra);
 }

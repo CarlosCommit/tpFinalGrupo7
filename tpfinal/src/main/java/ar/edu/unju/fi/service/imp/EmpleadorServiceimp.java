@@ -109,6 +109,45 @@ public class EmpleadorServiceimp implements IEmpleadorService {
 		
 	
 	} 
+	
+	@Override
+	public List<Postulante> getListaPostulantePalabra(long id,String palabra) {
+	
+		Iterable<Oferta> listaOferta = ofertaDaoImp.findByActiveAndId(id);
+		List<Oferta> listaOferta2 = new ArrayList<Oferta>();
+		List<Postulante> listaPostulantes1 = new ArrayList<Postulante>();
+		
+		
+		////ahora filtramos aquellas ofertas que tengan que ver con el puesto laboral
+		for (Oferta oferta: listaOferta)
+		{
+			//convertimos las dos en minusculas para que no haya diferencia
+			String puestoRequerido =  oferta.getPuestoRequerido().toLowerCase();
+			String puestoBuscado = palabra.toLowerCase();
+			
+			if(puestoRequerido.contains(puestoBuscado))
+			{
+		
+		      listaOferta2.add(oferta);
+			}
+			
+		}
+		
+		//De la nueva lista de ofertas que contienen las palabras, buscaremos todos los postulados a ellas
+		for (Oferta oferta2: listaOferta2)
+		{
+			
+			listaPostulantes1.addAll(postuladoDaoImp.findByIdOferta(oferta2.getId()));
+			
+		}
+		
+		
+		
+		
+		return listaPostulantes1;
+		
+	
+	} 
  
 	
 
