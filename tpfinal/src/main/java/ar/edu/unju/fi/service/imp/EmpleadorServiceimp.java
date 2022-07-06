@@ -78,5 +78,38 @@ public class EmpleadorServiceimp implements IEmpleadorService {
 	
 	} 
 	
+	@Override
+	public List<Postulante> getListaPostulanteProvincia(long id,String provincia) {
+	
+		Iterable<Oferta> listaOferta = ofertaDaoImp.findByActiveAndId(id);
+		List<Postulante> listaPostulantes1 = new ArrayList<Postulante>();
+		List<Postulante> listaPostulantes2 = new ArrayList<Postulante>();
+		
+		//obtenemos todos los postulantes que se postularon para alguna oferta del empleador
+		for (Oferta oferta: listaOferta)
+		{
+			
+			listaPostulantes1.addAll(postuladoDaoImp.findByIdOferta(oferta.getId()));
+			
+		}
+		//ahora filtramos de esos postulantes solos los que coincidan con la provincia que buscamos
+		for (Postulante postulante: listaPostulantes1)
+		{
+			
+			if(postulante.getCiudadano().getProvincia().equals(provincia))
+			{
+			listaPostulantes2.add(postulante);	
+			}
+			
+		}
+		
+		
+		
+		return listaPostulantes2;
+		
+	
+	} 
+ 
+	
 
 }

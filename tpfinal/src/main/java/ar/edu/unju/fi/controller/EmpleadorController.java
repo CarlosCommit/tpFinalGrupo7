@@ -78,6 +78,17 @@ public ModelAndView crearEmpleador(Model model)
 	public ModelAndView verPostulantes(Model model,Principal principal) {
 		ModelAndView mav = new ModelAndView("lista_postulantes");
 		mav.addObject("lista",empleadorService.getListaPostulante(empleadorService.getId(Long.parseLong(principal.getName()))));
+		mav.addObject("listaProvincia",listaProvincia.getLista());
+		return mav;
+	}
+	@GetMapping("/filtro/{pro}")
+	public ModelAndView verPostulantesProvincia(@PathVariable(name="pro")String pro, Model model,Principal principal) {
+		ModelAndView mav = new ModelAndView("lista_postulantes");
+		//le paso el id del empleador conectado(id, no cuit) y le paso la palabra clave para buscar
+		mav.addObject("lista",empleadorService.getListaPostulanteProvincia(empleadorService.getId(Long.parseLong(principal.getName())),pro ));
+		mav.addObject("listaProvincia",listaProvincia.getLista());
+		
+		
 		return mav;
 	}
 	// para ver curriculum del postulado

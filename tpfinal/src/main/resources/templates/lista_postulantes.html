@@ -5,20 +5,39 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
-<title>Lista de Docentes</title>
+<title>Lista de Postulantes</title>
 </head>
 <body>
 
  <header th:replace="/layouts/header::header"></header>
-<div class="cont">
+
 <!-- INICIO DE TABLA -->
+<div class="dropdown">
+
+  <button style="float: left;"
+    class="btn btn-dark dropdown-toggle btn-sm "
+    type="button"
+    id="dropdownMenuButton4"
+    data-bs-toggle="dropdown"
+    aria-expanded="false">
+  Provincia</button>
+  
+  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">    
+  
+    <li th:each="provincia : ${listaProvincia}"><a class="dropdown-item" th:href="@{/empleador/filtro/} + ${provincia}" th:text="${provincia}"></a></li>
+ 
+  </ul>
+  
+</div>
+
+
+
+
 <div class="container">
 			<br>
 			<p class="h4 mb-10">Postulantes</p>
 			<br>
-			<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-			   <a th:href="@{/candidato/nuevo}" id="nuevo" class="btn btn-primary">Ver todos los postulantes</a>
-			</div>
+			
 			<br>
 			<div class="col-12 d-flex justify-content-center">
 				<table class="table table-striped table-hover">
@@ -47,7 +66,7 @@
 		</div>
 		
 		<!-- FIN DE TABLA -->
-		</div>
+		
 		<footer th:replace="/layouts/footer :: footer"></footer>
     <script src="/webjars/jquery/jquery.min.js" type="text/javascript"></script>
 	<script src="/webjars/popper.js/umd/popper.min.js" type="text/javascript"></script>

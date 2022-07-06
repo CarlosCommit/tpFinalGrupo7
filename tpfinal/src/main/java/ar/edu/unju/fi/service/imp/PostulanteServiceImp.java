@@ -91,5 +91,7 @@ public class PostulanteServiceImp implements IPostuladoService {
 		return postulantes;
 		
 	}
+	
+	
 
 }
