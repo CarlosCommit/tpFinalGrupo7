@@ -13,4 +13,6 @@ public interface ICvDAO extends CrudRepository<Cv, Long>{
 	
 	@Query(value= "SELECT * FROM curriculum WHERE curriculum.ciudadano_id = :id", nativeQuery = true)	
 	public Optional<Cv> findByIdCiudadano(@Param("id")Long id);
+	@Query(value= "SELECT * FROM curriculum WHERE curriculum.cv_dni = :id", nativeQuery = true)	
+	public Optional<Cv> findByDniCiudadano(@Param("id")Long id);
 }

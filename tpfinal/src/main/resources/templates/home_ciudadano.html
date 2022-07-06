@@ -9,33 +9,9 @@
 </head>
 <body>
 	<header th:replace="/layouts/header :: header"></header>
-	
-<!--  	<h1>Ciudadano</h1>
-	
-			<div class="d-grid gap-2">
-  <a class="btn btn-primary" type="button" th:href="@{/curriculum/nuevo}">Crear o Modificar Curriculum Vitae</a>
-  <a class="btn btn-secondary" type="button" th:href="@{/curriculum/ver}">Ver Curriculum Vitae</a>
-   <a class="btn btn-danger" type="button" th:href="@{/curso/lista}">Cursos online</a>
-    <a class="btn btn-danger" type="button" th:href="@{/logout}">Salir</a>
-    <h4 th:text=" 'Bienvenido! '+ ${usuario}"></h4>
-</div>
 
 
--->
 
-<div class="dropdown">
-  <button style="float: right;"
-    class="btn btn-dark dropdown-toggle btn-lg "
-    type="button"
-    id="dropdownMenuButton4"
-    data-bs-toggle="dropdown"
-    aria-expanded="false">
-  Menu</button>
-  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-    <li><a class="dropdown-item" th:href="@{/curriculum/ver}">Ver o Crear Curriculum Vitae</a></li>
-    <li><a class="dropdown-item" th:href="@{/curso/lista}">Cursos online</a></li>
-  </ul>
-</div>
 
 <h1 align="center">OFERTAS LABORALES</h1>
 
@@ -90,23 +66,6 @@
   
 </div>
 
-<!--  
-<div th:each="oferta: ${lista}" class="card ">
-  <div class="card-header text-center h4" th:text="${oferta.puestoRequerido}">
-  </div>
-  <div class="card-body">
-  
-    <h5 class="card-title" th:text="${oferta.resumenPuesto}"></h5>
-    <h6 class="card-title" th:text="${oferta.requisitos}"></h6>
-    <p>telefono</p>
-    <p class="card-text" th:text="${oferta.datosContacto}"></p>
-    <a href="#" class="btn btn-primary">POSTULARSE</a>
-  </div>
-  <div class="card-footer text-muted">
-  </div>
-</div>
-<br>
-</div>-->
 
 <div class="container col-4">
 <div class="card "th:each="oferta: ${lista}">

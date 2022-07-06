@@ -38,17 +38,22 @@
   <div class="text-danger" th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}"></div>
 	</div>
 	<div class="mb-3">
+	
+	
   <label for="exampleFormControlInput1" class="form-label">Estado civil</label>
-  <input th:field="*{estadoCivil}" type="text" class="form-control" id="estadocivilid" placeholder="Ingrese el Estado Civil">
+  <select th:field="*{estadoCivil}"  class="form-control" id="estadocivilid" >
+       <option value="Casado" th:text="Casado"/>
+        <option value="Soltero" th:text="Soltero"/>
+  </select>
   <div class="text-danger" th:if="${#fields.hasErrors('estadoCivil')}" th:errors="*{estadoCivil}"></div>
 	</div>
 	<div class="mb-3">
   
 					<label for="em" class="form-label">Provincia</label> 
 					<select th:field="*{provincia}" class="form-control" id="empleadorId">
-						<option th:each="lista : ${lista}"
-							th:value="${lista.nombre}"
-							th:text="${lista.nombre}"
+						<option th:each="provincia : ${lista}"
+							th:value="${provincia}"
+							th:text="${provincia}"
 						/>
 					</select>		
 	</div>

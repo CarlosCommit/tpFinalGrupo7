@@ -18,6 +18,7 @@ import ar.edu.unju.fi.entity.Ciudadano;
 import ar.edu.unju.fi.service.ICiudadanoService;
 import ar.edu.unju.fi.service.IOfertaService;
 import ar.edu.unju.fi.service.IUsuarioService;
+import ar.edu.unju.fi.service.util.Provincia;
 
 @Controller
 @RequestMapping("/ciudadano")
@@ -29,15 +30,17 @@ public class CiudadanoController {
 	IOfertaService ofertaService;
 	@Autowired
 	IUsuarioService usuarioService;
+	@Autowired
+	private Provincia listaProvincia;
 
 
 @GetMapping("/nuevo")
 public ModelAndView nuevociudadano(Model model) {
 	ModelAndView mav = new ModelAndView("alta_ciudadano");
 	
-	//mav.addObject("usuario",usuarioService.getUsuario());
 	mav.addObject("ciudadano", ciudadanoService.getCiudadano());
-	mav.addObject("lista", ofertaService.getProvincias());
+	
+	mav.addObject("lista", listaProvincia.getLista());
 	
 	
 	return mav;
@@ -51,10 +54,19 @@ public ModelAndView guardarciudadano(@Validated @ModelAttribute("ciudadano")Ciud
     	mav.addObject("ciudadano", ciudadano);
     	return mav;
     }
+    if(ciudadano.getEdad()>=18)
+    {
+    	ciudadanoService.guardarCiudadano(ciudadano);
+    	ModelAndView mav = new ModelAndView("redirect:/login");
+    	return mav;
+    }else
+    {
+    	ModelAndView mav = new ModelAndView("menor_edad");
+    	return mav;
+    }
 	
-	ciudadanoService.guardarCiudadano(ciudadano);
-ModelAndView mav = new ModelAndView("redirect:/login");
-return mav;
+	
+
 }
 
 @GetMapping("/home")

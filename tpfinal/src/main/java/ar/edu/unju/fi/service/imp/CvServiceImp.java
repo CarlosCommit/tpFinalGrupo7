@@ -21,9 +21,18 @@ public class CvServiceImp implements ICvService {
 		Optional<Cv> curriculum = cvDaoImp.findByIdCiudadano(id);
 		return curriculum;
 	}
+	
 
 	@Override
-	public void GuardarCv(Cv cv) {
+	public Optional<Cv> BuscarCvDni(Long id) {
+		
+		Optional<Cv> curriculum = cvDaoImp.findByDniCiudadano(id);
+		return curriculum;
+	}
+
+	@Override
+	public void GuardarCv(Cv cv,long dni) {
+		cv.setDni(dni);
 		cvDaoImp.save(cv);
 
 	}

@@ -45,7 +45,7 @@ public class CvController {
 		ModelAndView mav = new ModelAndView("redirect:/ciudadano/home");
 		
 		cv.setCiudadano(ciudadanoService.buscarId(Long.parseLong( principal.getName() )).get()  );
-		cvService.GuardarCv(cv);
+		cvService.GuardarCv(cv,Long.parseLong(principal.getName() ));
 		
 		return mav;
 	}
@@ -80,7 +80,7 @@ public class CvController {
 		cvService.mapear(curriculum, curri.get());
 		curriculum.setCiudadano(ciudadanoService.buscarId(Long.parseLong( principal.getName() )).get()  );
 		
-		cvService.GuardarCv(curri.get());
+		cvService.GuardarCv(curri.get(),Long.parseLong(principal.getName() ));
 		
 		return mav;
 	}

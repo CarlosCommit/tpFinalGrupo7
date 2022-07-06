@@ -12,8 +12,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+
 
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
@@ -34,7 +35,7 @@ public class Oferta implements Serializable{
 	@JoinColumn(name="emp_id")
 	private Empleador empleador;
 	
-	@OneToMany(cascade = {CascadeType.ALL},
+	@ManyToMany(cascade = {CascadeType.ALL},
 	           fetch = FetchType.EAGER)
 	private List<Ciudadano> ciudadanos = new ArrayList<Ciudadano>();	
 	

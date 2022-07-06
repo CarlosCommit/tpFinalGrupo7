@@ -32,11 +32,6 @@
 				</div>
 				
 				<div class="mb-3">
-					<label for="razonSocial" class="form-label">Dni</label> 
-					<input th:field=*{dni} type="number" class="form-control" id="razonSocial" placeholder="Ingrese dni">
-					<div class="text-danger" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div>
-				</div>
-				<div class="mb-3">
 					<label for="exLaboral" class="form-label">Experiencia Laboral</label> 
 					<input th:field=*{exLaboral}  type="text" class="form-control" id="fechaInicioId" placeholder="Ingrese Experiencias Laborales">
 					<div class="text-danger" th:if="${#fields.hasErrors('exLaboral')}" th:errors="*{exLaboral}"></div>

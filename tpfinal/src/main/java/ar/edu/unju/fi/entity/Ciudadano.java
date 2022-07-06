@@ -2,6 +2,7 @@ package ar.edu.unju.fi.entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.Period;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -124,6 +125,10 @@ public class Ciudadano implements Serializable {
 		return serialVersionUID;
 	}
 	
+	public int getEdad() {
+		Period period = Period.between(this.fechaNacimiento, LocalDate.now());
+		return period.getYears();
+	}
 	
 	
 	

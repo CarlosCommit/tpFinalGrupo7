@@ -31,7 +31,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 		private Long id;
 		@Column(name="cv_dni")
 	    @Min(value=1,message="no puede ser menor a 1000000")
-		private int dni;
+		private long dni;
 		@Column(name="cv_email")
 		@NotEmpty
 		private String email;
@@ -59,23 +59,16 @@ import org.springframework.format.annotation.DateTimeFormat;
 		@OneToOne(cascade = {CascadeType.ALL})
 		@JoinColumn(name = "ciudadano_id")
 		private Ciudadano ciudadano;
-		
-		public Ciudadano getCiudadano() {
-			return ciudadano;
-		}
-		public void setCiudadano(Ciudadano ciudadano) {
-			this.ciudadano = ciudadano;
-		}
 		public Long getId() {
 			return id;
 		}
 		public void setId(Long id) {
 			this.id = id;
 		}
-		public int getDni() {
+		public long getDni() {
 			return dni;
 		}
-		public void setDni(int dni) {
+		public void setDni(long dni) {
 			this.dni = dni;
 		}
 		public String getEmail() {
@@ -126,9 +119,16 @@ import org.springframework.format.annotation.DateTimeFormat;
 		public void setEducacion(String educacion) {
 			this.educacion = educacion;
 		}
+		public Ciudadano getCiudadano() {
+			return ciudadano;
+		}
+		public void setCiudadano(Ciudadano ciudadano) {
+			this.ciudadano = ciudadano;
+		}
 		public static long getSerialversionuid() {
 			return serialVersionUID;
 		}
-	
+		
+		
 
 	}
