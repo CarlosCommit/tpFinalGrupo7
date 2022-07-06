@@ -7,9 +7,10 @@ public interface ICursoService {
 	
 	public Curso getCurso();
 	public void guardarCurso(Curso curso, String Username);
-	public void eliminarCurso(int id);
+	public void eliminarCurso(long id);
 	public Iterable<Curso> getListaCurso();
 	public Iterable<Curso> getListaCursoEmpleador(long id);
+	public Iterable<Curso> getListaCategoria(String categoria);
 	
 	
 	

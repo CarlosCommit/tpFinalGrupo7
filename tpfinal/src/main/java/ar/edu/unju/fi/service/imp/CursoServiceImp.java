@@ -1,5 +1,7 @@
 package ar.edu.unju.fi.service.imp;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,8 +33,11 @@ public class CursoServiceImp implements ICursoService {
 	}
 
 	@Override
-	public void eliminarCurso(int id) {
-		// TODO Auto-generated method stub
+	public void eliminarCurso(long id) {
+	
+		Optional<Curso> curso = cursoDAOimp.findById(id);
+		curso.get().setDisponible(false);
+		cursoDAOimp.save(curso.get());
 
 	}
 
@@ -46,6 +51,12 @@ public class CursoServiceImp implements ICursoService {
 	public Iterable<Curso> getListaCursoEmpleador(long id) {
 		
 		return cursoDAOimp.findByActiveAndId(id);
+	}
+
+	@Override
+	public Iterable<Curso> getListaCategoria(String categoria) {
+		Iterable<Curso> cursos = cursoDAOimp.findByCategoria(categoria);
+		return cursos;
 	}
 
 }

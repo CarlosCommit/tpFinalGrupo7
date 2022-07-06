@@ -16,9 +16,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.entity.Ciudadano;
 import ar.edu.unju.fi.service.ICiudadanoService;
+import ar.edu.unju.fi.service.ICursoService;
 import ar.edu.unju.fi.service.IOfertaService;
 import ar.edu.unju.fi.service.IPostuladoService;
 import ar.edu.unju.fi.service.IUsuarioService;
+import ar.edu.unju.fi.service.util.Categoria;
 import ar.edu.unju.fi.service.util.Provincia;
 
 @Controller
@@ -35,6 +37,12 @@ public class CiudadanoController {
 	private Provincia listaProvincia;
 	@Autowired
 	IPostuladoService postuladoService;
+	@Autowired
+	private Categoria categoriaLista;
+	@Autowired
+	ICursoService cursoService;
+
+
 
 
 @GetMapping("/nuevo")
@@ -117,6 +125,14 @@ public ModelAndView verContrataciones(Principal prin)
 	return mav;
 }
 
+@GetMapping("/categoria/{cat}")
+public ModelAndView filtrarCategoria(@PathVariable(name="cat")String cat)
+{
+	ModelAndView mav = new ModelAndView("lista_curso");
+	mav.addObject("categorias", categoriaLista.getLista() );
+	mav.addObject("lista", cursoService.getListaCategoria(cat));
+	return mav;
+}
 
 
 

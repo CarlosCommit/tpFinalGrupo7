@@ -15,7 +15,24 @@
 	<h1 class="text-center"  sec:authorize="hasAuthority('CIUDADANO')">CURSOS DISPONIBLES</h1>
 	<br>
 	
-	
+
+ 
+<div class="dropdown" sec:authorize="hasAuthority('CIUDADANO')">
+  <button style="float: left;"
+    class="btn btn-dark dropdown-toggle btn-sm "
+    type="button"
+    id="dropdownMenuButton4"
+    data-bs-toggle="dropdown"
+    aria-expanded="false">
+  Categoria</button>
+  
+  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">    
+  
+    <li th:each="categoria : ${categorias}"><a class="dropdown-item" th:href="@{/ciudadano/categoria/} + ${categoria}" th:text="${categoria}"></a></li>
+ 
+  </ul>
+  
+</div>
 
 <div th:each="curso: ${lista}" class="card ">
   <div class="card-header text-center h4" th:text="${curso.nombre}">
@@ -27,8 +44,8 @@
     <p>Precio del curso</p>
     <p class="card-text" th:text="${curso.precio}"></p>
     <a href="#" class="btn btn-primary"  sec:authorize="hasAuthority('CIUDADANO')">Inscribirse</a>
-     <a href="#" class="btn btn-primary"  sec:authorize="hasAuthority('EMPLEADOR')">Editar</a>
-      <a href="#" class="btn btn-primary"  sec:authorize="hasAuthority('EMPLEADOR')">Eliminar</a>
+     <a href="" class="btn btn-primary"  sec:authorize="hasAuthority('EMPLEADOR')">Editar</a>
+      <a th:href="@{/curso/eliminar/}+${curso.id}" class="btn btn-primary"  sec:authorize="hasAuthority('EMPLEADOR')">Eliminar</a>
   </div>
   <div class="card-footer text-muted">
   </div>

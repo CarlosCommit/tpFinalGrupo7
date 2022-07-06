@@ -4,10 +4,12 @@ import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -31,15 +33,20 @@ public class CursoController {
 	@GetMapping("/lista")
 	public ModelAndView listaCursos(Principal principal) {
 		ModelAndView mav = new ModelAndView("lista_curso");
-		long idEmpleador = empleadorService.getId(Long.parseLong(principal.getName()));
 		
+		long idEmpleador = empleadorService.getId(Long.parseLong(principal.getName()));
+		//mando la lista de cursos que pertenecen al empleador conectado
 		mav.addObject("lista", cursoService.getListaCursoEmpleador(idEmpleador));
 		return mav;
 	}
 	@GetMapping("/lista/ciudadano")
 	public ModelAndView listaCursosCiudadano(Principal principal) {
+		
 		ModelAndView mav = new ModelAndView("lista_curso");
+		//mando la lista de cursos que esten activas para el ciudadano
 		mav.addObject("lista", cursoService.getListaCurso());
+		//mando la lista de categorias para filtrar
+		mav.addObject("categorias", categorias.getLista());
 		return mav;
 	}
 	
@@ -65,4 +72,11 @@ public class CursoController {
 		return mav;
 	}
 	
+	@GetMapping("/eliminar/{id}")
+    public ModelAndView eliminarCurso(@PathVariable(name="id") long id,Model model)
+    {
+		cursoService.eliminarCurso(id);
+		ModelAndView mav = new ModelAndView("borrado_curso");
+		return mav;
+    }
 }

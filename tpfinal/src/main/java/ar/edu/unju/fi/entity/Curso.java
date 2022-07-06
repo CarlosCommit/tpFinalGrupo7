@@ -49,7 +49,7 @@ public class Curso implements Serializable{
 	}
 	@Column(name="cur_vacante")
 	private int vacante; 
-	@Column
+	@Column(name="cur_categoria")
 	private String categoria;
 	@Column(name="cur_disponible")
 	private boolean disponible; 
