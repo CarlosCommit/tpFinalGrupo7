@@ -55,7 +55,12 @@
 	</div>
 	<div class="mb-3">
   <label for="jornadaId" class="form-label">Jornada</label>
-  <input th:field="*{jornada}" type="number" class="form-control" id="jornadaId" placeholder="Ingrese jornada laboral en horas">
+  
+<select th:field="*{jornada}" class="form-control" id="empleadorId">
+							<option value="Full time">Full time</option>
+							<option value="Full time">Part time</option>
+					</select>		
+
   <div class="text-danger" th:if="${#fields.hasErrors('jornada')}" th:errors="*{jornada}"></div>
 	</div>
 	<div class="mb-3">

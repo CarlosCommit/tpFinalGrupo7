@@ -15,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -41,18 +43,24 @@ public class Curso implements Serializable{
 	@Column(name="cur_nombre")
 	@NotEmpty
 	private String nombre; 
-	public boolean isDisponible() {
-		return disponible;
-	}
-	public void setDisponible(boolean disponible) {
-		this.disponible = disponible;
-	}
 	@Column(name="cur_vacante")
+	@NotNull
 	private int vacante; 
 	@Column(name="cur_categoria")
+	@NotEmpty
 	private String categoria;
 	@Column(name="cur_disponible")
-	private boolean disponible; 
+	private boolean disponible;
+	@Column(name="cur_detalle")
+	@NotEmpty
+	private String detalle; 
+	@Column(name="cur_duracion")
+	@Min(value = 1, message = "*El valor del código debe ser mayor o igual a 1")
+	private int duracion;
+	@Column(name="cur_precio")
+	@NotNull
+	private long precio;
+	
 	public Empleador getEmpleador() {
 		return empleador;
 	}
@@ -65,14 +73,7 @@ public class Curso implements Serializable{
 	public void setCiudadanos(List<Ciudadano> ciudadanos) {
 		this.ciudadanos = ciudadanos;
 	}
-	@Column(name="cur_detalle")
-	@NotEmpty
-	private String detalle; 
-	@Column(name="cur_duracion")
-	@NotNull
-	private int duracion;
-	@Column(name="cur_precio")
-	private String precio;
+	
 	public Long getId() {
 		return id;
 	}
@@ -103,10 +104,10 @@ public class Curso implements Serializable{
 	public void setDuracion(int duracion) {
 		this.duracion = duracion;
 	}
-	public String getPrecio() {
+	public long getPrecio() {
 		return precio;
 	}
-	public void setPrecio(String precio) {
+	public void setPrecio(long precio) {
 		this.precio = precio;
 	}
 	public static long getSerialversionuid() {
@@ -118,5 +119,11 @@ public class Curso implements Serializable{
 	}
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
+	}
+	public boolean isDisponible() {
+		return disponible;
+	}
+	public void setDisponible(boolean disponible) {
+		this.disponible = disponible;
 	}
 }

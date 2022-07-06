@@ -28,6 +28,7 @@ body {
   min-height: 100vh;
   background: url(/images/blanco.jpg) no-repeat fixed center center #333;
   background-size: cover;
+  padding-bottom: 3px;
 }
 .single-line {
   display: flex;
@@ -48,4 +49,7 @@ body {
 .cont{
 	min-height: calc(100vh - 150px - 70px);
 	
+}
+.fot{
+	margin-top: 100px;
 }

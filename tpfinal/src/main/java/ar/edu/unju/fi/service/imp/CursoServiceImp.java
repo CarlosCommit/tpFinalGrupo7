@@ -32,6 +32,22 @@ public class CursoServiceImp implements ICursoService {
 		cursoDAOimp.save(curso);
 
 	}
+	
+	@Override
+	public void modificar(Curso curso) {
+		
+	Curso cursoOriginal = cursoDAOimp.findById(curso.getId()).get();
+
+	cursoOriginal.setCategoria(curso.getCategoria());
+	cursoOriginal.setNombre(curso.getNombre());
+	cursoOriginal.setDetalle(curso.getDetalle());
+	cursoOriginal.setPrecio(curso.getPrecio());
+	cursoOriginal.setDuracion(curso.getDuracion());
+	cursoDAOimp.save(cursoOriginal);
+
+	}
+	
+	
 
 	@Override
 	public void eliminarCurso(long id) {

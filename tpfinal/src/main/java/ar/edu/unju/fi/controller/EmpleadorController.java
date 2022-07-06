@@ -64,7 +64,7 @@ public ModelAndView crearEmpleador(Model model)
 		    	return mav;
 		    }
 		
-		ModelAndView mav = new ModelAndView("redirect:/empleador/home");
+		ModelAndView mav = new ModelAndView("login_ciudadano");
 		empleadorService.guardarEmpleador(empleador);
 		LOGGER.info("nuevo empleador creado");
 		return mav;

@@ -46,9 +46,13 @@
     </div>
     <p>Precio del curso</p>
     <p class="card-text" th:text="${curso.precio}"></p>
+     <p>Vacantes disponibles</p>
+    <p class="card-text" th:text="${curso.vacante}"></p>
+    
     <a th:href="@{/curso/inscribir/}+${curso.id}" class="btn btn-primary"  sec:authorize="hasAuthority('CIUDADANO')">Inscribirse</a>
      <a th:href="@{/curso/editar/}+${curso.id}" class="btn btn-primary"  sec:authorize="hasAuthority('EMPLEADOR')">Editar</a>
       <a th:href="@{/curso/eliminar/}+${curso.id}" class="btn btn-primary"  sec:authorize="hasAuthority('EMPLEADOR')">Eliminar</a>
+      <a th:href="@{/curso/inscriptos/}+${curso.id}" class="btn btn-primary"  sec:authorize="hasAuthority('EMPLEADOR')">Ver Inscriptos</a>
   </div>
   <div class="card-footer text-muted">
   </div>

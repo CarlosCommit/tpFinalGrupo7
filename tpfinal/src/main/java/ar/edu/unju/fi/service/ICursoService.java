@@ -16,6 +16,7 @@ public interface ICursoService {
 	public Iterable<Curso> getListaCategoria(String categoria);
 	public void agregarCiudadanoInscripto(Curso curso,Ciudadano ciudadano);
 	public Optional<Curso> buscarCurso(long id);
+	public void modificar(Curso curso);
 	
 	
 	
