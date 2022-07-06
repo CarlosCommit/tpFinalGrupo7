@@ -63,7 +63,7 @@ public class OfertaController {
 		  mav.addObject("lista",listaProvincia.getLista());
 		   return mav; 
 	   }
-	   ModelAndView mav = new ModelAndView("redirect:/empleador/home");
+	   ModelAndView mav = new ModelAndView("oferta_creada");
 	   
 	ofertaService.guardarOferta(oferta, principal.getName());
 	  LOGGER.info("nueva oferta creada");
@@ -77,7 +77,7 @@ public class OfertaController {
    {
 	  ofertaService.eliminarOferta(id); 
 	  LOGGER.info("ofert eliminada");
-	  ModelAndView mav = new ModelAndView("redirect:/empleador/home");
+	  ModelAndView mav = new ModelAndView("oferta_eliminada");
 	  return mav;
    }
    // toma como parametro id de of y usu

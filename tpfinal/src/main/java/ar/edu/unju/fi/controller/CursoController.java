@@ -73,7 +73,7 @@ public class CursoController {
 			mav.addObject("categorias", categorias.getLista());
 			return mav;
 		}
-		ModelAndView mav = new ModelAndView("redirect:/curso/lista");
+		ModelAndView mav = new ModelAndView("curso_guardado");
 		cursoService.guardarCurso(curso,prin.getName());
 		return mav;
 	}
