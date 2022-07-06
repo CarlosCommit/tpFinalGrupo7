@@ -16,13 +16,17 @@
 	<br>
 	<h4>Nuevo curso</h4>
 	<br>
-	<form th:action="@{/curso/guardar}" method="POST" th:object="${curso}">
+	<form th:action="@{/curso/modificar}" method="POST" th:object="${curso}">
 	
+	<div class="form-floating mb-3" hidden="hydden">
+					<input th:field="*{id}" type="number" class="form-control" id="id" />
+					<label for="id">id</label>
+				</div>
 	
 	
 	<div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">Nombre</label>
-  <input th:field="*{nombre}" type="text" class="form-control" id="codigoid" placeholder="Ingrese el nombre del curso">
+  <input th:field="*{nombre}" type="text" class="form-control" id="nombreid" placeholder="Ingrese el nombre del curso">
   <div class="text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
 	</div>
 	<div class="mb-3">
@@ -41,7 +45,7 @@
   <div class="text-danger" th:if="${#fields.hasErrors('detalle')}" th:errors="*{detalle}"></div>
 	</div>
 	<div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Meses de Duracion</label>
+  <label for="exampleFormControlInput1" class="form-label">Duracion</label>
   <input th:field="*{duracion}" type="number" class="form-control" id="paisid" placeholder="Ingrese duracion en meses">
   <div class="text-danger" th:if="${#fields.hasErrors('duracion')}" th:errors="*{duracion}"></div>
 	</div>

@@ -105,4 +105,26 @@ public class CursoController {
 		
 	}
 	
+	@GetMapping("/editar/{id}")
+	public ModelAndView editarCurso(@PathVariable(value="id")long id) {
+		ModelAndView mav = new ModelAndView("editar_curso");
+		mav.addObject("curso", cursoService.buscarCurso(id).get());
+		mav.addObject("categorias", categorias.getLista());
+		return mav;
+	}
+	
+	@PostMapping("/modificar")
+	public ModelAndView modificarCurso(@Validated @ModelAttribute ("curso")Curso curso,Principal pri,BindingResult bin) {
+		if(bin.hasErrors()) {
+			ModelAndView mav = new ModelAndView("editar_curso");
+			mav.addObject("curso", curso);
+			mav.addObject("categorias", categorias.getLista());
+			return mav;
+		}
+		ModelAndView mav = new ModelAndView("redirect:/curso/lista");
+		//curso.setId(cursoService.buscarCurso(id).get().getId());
+		cursoService.guardarCurso(curso, pri.getName());
+		return mav;
+	}
+	
 }
