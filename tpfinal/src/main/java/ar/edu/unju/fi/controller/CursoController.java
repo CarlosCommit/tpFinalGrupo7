@@ -1,5 +1,7 @@
 package ar.edu.unju.fi.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -12,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.entity.Curso;
 import ar.edu.unju.fi.service.ICursoService;
+import ar.edu.unju.fi.service.IEmpleadorService;
+import ar.edu.unju.fi.service.util.Categoria;
 
 
 @Controller
@@ -20,9 +24,20 @@ public class CursoController {
 
 	@Autowired
 	ICursoService cursoService;
-
+    @Autowired
+    IEmpleadorService empleadorService;
+    @Autowired
+    private Categoria categorias;
 	@GetMapping("/lista")
-	public ModelAndView listaCursos() {
+	public ModelAndView listaCursos(Principal principal) {
+		ModelAndView mav = new ModelAndView("lista_curso");
+		long idEmpleador = empleadorService.getId(Long.parseLong(principal.getName()));
+		
+		mav.addObject("lista", cursoService.getListaCursoEmpleador(idEmpleador));
+		return mav;
+	}
+	@GetMapping("/lista/ciudadano")
+	public ModelAndView listaCursosCiudadano(Principal principal) {
 		ModelAndView mav = new ModelAndView("lista_curso");
 		mav.addObject("lista", cursoService.getListaCurso());
 		return mav;
@@ -32,18 +47,21 @@ public class CursoController {
 	public ModelAndView nuevoCurso() {
 		ModelAndView mav = new ModelAndView("alta_curso");
 		mav.addObject("curso", cursoService.getCurso());
+		mav.addObject("categorias", categorias.getLista());
 		return mav;
 	}
 	
 	@PostMapping("/guardar")
-	public ModelAndView guardarCurso(@Validated @ModelAttribute("curso")Curso curso,BindingResult bindingResult) {
+	public ModelAndView guardarCurso(@Validated @ModelAttribute("curso")Curso curso,BindingResult bindingResult,Principal prin) {
+		
 		if (bindingResult.hasErrors()) {
 			ModelAndView mav = new ModelAndView("alta_curso");
 			mav.addObject("curso", curso);
+			mav.addObject("categorias", categorias.getLista());
 			return mav;
 		}
 		ModelAndView mav = new ModelAndView("redirect:/curso/lista");
-		cursoService.guardarCurso(curso);
+		cursoService.guardarCurso(curso,prin.getName());
 		return mav;
 	}
 	

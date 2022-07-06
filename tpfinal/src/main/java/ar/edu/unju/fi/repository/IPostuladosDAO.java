@@ -20,4 +20,5 @@ public interface IPostuladosDAO extends CrudRepository<Postulante, Long> {
 	
 	@Query(value= "SELECT * FROM postulados WHERE postulados.ciudadano_ciu_id = :id AND postulados.oferta_ofe_id = :q", nativeQuery = true)	
 	public Optional<Postulante> findByPost (@Param("id")Long id, @Param("q")Long q );
+	
 }

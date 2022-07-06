@@ -26,6 +26,16 @@
   <div class="text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
 	</div>
 	<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Categoria</label>
+  <select th:field="*{categoria}" class="form-control" >
+						<option th:each="categoria : ${categorias}"
+							th:value="${categoria}"
+							th:text="${categoria}"
+						/>
+					</select>		
+  <div class="text-danger" th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}"></div>
+	</div>
+	<div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">Detalle</label>
   <input th:field="*{detalle}" type="text" class="form-control" id="nombreid" placeholder="Ingrese detalles">
   <div class="text-danger" th:if="${#fields.hasErrors('detalle')}" th:errors="*{detalle}"></div>

@@ -5,12 +5,15 @@ import org.springframework.stereotype.Service;
 
 import ar.edu.unju.fi.entity.Curso;
 import ar.edu.unju.fi.repository.ICursoDAO;
+import ar.edu.unju.fi.repository.IEmpleadorDAO;
 import ar.edu.unju.fi.service.ICursoService;
 @Service
 public class CursoServiceImp implements ICursoService {
 
 	@Autowired
 	ICursoDAO cursoDAOimp;
+	@Autowired
+	IEmpleadorDAO empleadorImp;
 	@Override
 	public Curso getCurso() {
 		
@@ -18,7 +21,11 @@ public class CursoServiceImp implements ICursoService {
 	}
 
 	@Override
-	public void guardarCurso(Curso curso) {
+	public void guardarCurso(Curso curso, String Username) {
+		//le mandamos el empleador que encontramos por el (USERNAME DEL QUE ESTA CONECTADO
+		curso.setEmpleador(empleadorImp.findByUsuarioId(Long.parseLong(Username)).get());
+		//System.out.println(empleadorImp.findByUsuarioId(Long.parseLong(Username)).get().getId());
+		curso.setDisponible(true);
 		cursoDAOimp.save(curso);
 
 	}
@@ -32,7 +39,13 @@ public class CursoServiceImp implements ICursoService {
 	@Override
 	public Iterable<Curso> getListaCurso() {
 		
-		return cursoDAOimp.findAll();
+		return cursoDAOimp.findByActive();
+	}
+
+	@Override
+	public Iterable<Curso> getListaCursoEmpleador(long id) {
+		
+		return cursoDAOimp.findByActiveAndId(id);
 	}
 
 }

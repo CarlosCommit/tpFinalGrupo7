@@ -66,27 +66,12 @@ public class EmpleadorServiceimp implements IEmpleadorService {
 		Iterable<Oferta> listaOferta = ofertaDaoImp.findByActiveAndId(id);
 		List<Postulante> listaPostulantes = new ArrayList<Postulante>();
 		
-		//Iterable<Postulante> listaPostulantes = postuladoDaoImp.findByIdOferta(Long.parseLong("1"));
-		
 		for (Oferta oferta: listaOferta)
 		{
 			listaPostulantes.addAll(postuladoDaoImp.findByIdOferta(oferta.getId()));
 			
 		}
 		
-		/*for(Oferta oferta: listaOferta)
-		{
-			if(postuladoDaoImp.findByIdOferta(oferta.getId()).isPresent())
-			{
-			System.out.println(postuladoDaoImp.findByIdOferta(oferta.getId()).get().getId());
-				listaPostulantes.add(postuladoDaoImp.findByIdOferta(oferta.getId()).get());
-			}else
-				
-			{
-				System.out.println("error");
-			}
-			//System.out.println(oferta.getPuestoRequerido());
-		}*/
 		
 		return listaPostulantes;
 		

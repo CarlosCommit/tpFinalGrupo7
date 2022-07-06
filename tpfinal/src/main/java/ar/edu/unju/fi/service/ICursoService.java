@@ -6,9 +6,10 @@ public interface ICursoService {
 
 	
 	public Curso getCurso();
-	public void guardarCurso(Curso curso);
+	public void guardarCurso(Curso curso, String Username);
 	public void eliminarCurso(int id);
 	public Iterable<Curso> getListaCurso();
+	public Iterable<Curso> getListaCursoEmpleador(long id);
 	
 	
 	

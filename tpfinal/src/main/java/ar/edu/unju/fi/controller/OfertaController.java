@@ -23,6 +23,7 @@ import ar.edu.unju.fi.service.ICiudadanoService;
 import ar.edu.unju.fi.service.IEmpleadorService;
 import ar.edu.unju.fi.service.IOfertaService;
 import ar.edu.unju.fi.service.IPostuladoService;
+import ar.edu.unju.fi.service.util.Provincia;
 
 @Controller
 @RequestMapping("/oferta")
@@ -36,6 +37,8 @@ public class OfertaController {
 	ICiudadanoService ciudadanoService;
 	@Autowired
 	IPostuladoService postulanteService;
+	@Autowired
+	private Provincia listaProvincia;
 	
    @GetMapping("/nuevo")
    public ModelAndView crearOferta(Model model,Principal principal)
@@ -44,6 +47,7 @@ public class OfertaController {
 	 //Optional<Empleador> empleador =   empleadorService.buscarEmpleador(Long.parseLong(principal.getName()));
 	 //System.out.println(empleador.get().getNombreComercial() );
 	  mav.addObject("oferta",ofertaService.getOferta());
+	  mav.addObject("lista",listaProvincia.getLista());
 	  return mav;
    }
 	
@@ -54,6 +58,7 @@ public class OfertaController {
 	   if(bindingResult.hasErrors()) {
 		   ModelAndView mav = new ModelAndView("alta_oferta");
 		  mav.addObject("oferta", oferta);
+		  mav.addObject("lista",listaProvincia.getLista());
 		   return mav; 
 	   }
 	   ModelAndView mav = new ModelAndView("redirect:/empleador/home");
@@ -78,7 +83,7 @@ public class OfertaController {
    public ModelAndView contratar(@PathVariable(name="id") long id,@PathVariable(name="idUsuario")long idUsuario)
    {
 	 
-	  ModelAndView mav = new ModelAndView("redirect:/empleador/home");
+	  ModelAndView mav = new ModelAndView("contratado_exitoso");
 	  Long idciudadano = ciudadanoService.buscarId(idUsuario).get().getId();
 	  ofertaService.agregarCiudadanoContratado( ofertaService.buscarOferta(id).get() ,ciudadanoService.buscarId(idUsuario).get() );
 	  postulanteService.eliminarPostulante(idciudadano,id);

@@ -21,6 +21,11 @@
 					<input th:field=*{usuario.user} type="number" class="form-control" id="cuit" placeholder="Ingrese Cuit">
 				</div>
 				<div class="mb-3">
+					<label for="passw" class="form-label">Contraseña</label> 
+					<input th:field=*{usuario.passw} type="password" class="form-control" id="passw" placeholder="Ingrese una Contraseña">
+					
+				</div>
+				<div class="mb-3">
 					<label for="razonSocial" class="form-label">Razon Social</label> 
 					<input th:field=*{razonSocial} type="text" class="form-control" id="razonSocial" placeholder="Ingrese Razon Social">
 					<div class="text-danger" th:if="${#fields.hasErrors('razonSocial')}" th:errors="*{razonSocial}"></div>
@@ -55,7 +60,13 @@
 	
 			<div class="mb-3">
 					<label for="provincia" class="form-label">Provincia</label> 
-					<input th:field=*{provincia} type="text" class="form-control" id="provincia" placeholder="Escriba su provincia">
+					<select th:field="*{provincia}" class="form-control" id="empleadorId">
+						<option th:each="provincia : ${lista}"
+							th:value="${provincia}"
+							th:text="${provincia}"
+						/>
+					</select>		
+					
 					<div class="text-danger" th:if="${#fields.hasErrors('provincia')}" th:errors="*{provincia}"></div>
 					
 				</div>
@@ -70,11 +81,7 @@
 					<input th:field=*{descripcion} type="text" class="form-control" id="descripcion" placeholder="Ingrese una Descripcion">
 					<div class="text-danger" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></div>
 				</div>
-				<div class="mb-3">
-					<label for="passw" class="form-label">Contraseña</label> 
-					<input th:field=*{usuario.passw} type="text" class="form-control" id="passw" placeholder="Ingrese una Contraseña">
-					
-				</div>
+				
 								
 				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 					<button class="btn btn-primary me-md-2" type="submit">Guardar</button>

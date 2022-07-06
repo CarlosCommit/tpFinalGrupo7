@@ -38,7 +38,14 @@
 	<div class="mb-3">
 	<div class="mb-3">
   <label for="provinciaid" class="form-label">Provincia para el puesto</label>
-  <input th:field="*{provincia}" type="text" class="form-control" id="provinciaid" placeholder="Ingrese la Provincia">
+  
+  <select th:field="*{provincia}" class="form-control" id="empleadorId">
+						<option th:each="provincia : ${lista}"
+							th:value="${provincia}"
+							th:text="${provincia}"
+						/>
+					</select>		
+  
   <div class="text-danger" th:if="${#fields.hasErrors('provincia')}" th:errors="*{provincia}"></div>
 	</div>
 	

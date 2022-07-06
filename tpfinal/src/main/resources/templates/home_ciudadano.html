@@ -29,8 +29,8 @@
   Provincia</button>
   
   <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">    
-    <li><a class="dropdown-item" th:href="@{/ciudadano/filtrar/Jujuy}">Jujuy</a></li>
-   <li><a class="dropdown-item" th:href="@{/ciudadano/filtrar/Salta }">Salta</a></li>
+  
+    <li th:each="provincia : ${listaProvincia}"><a class="dropdown-item" th:href="@{/ciudadano/filtrar/} + ${provincia}" th:text="${provincia}"></a></li>
  
   </ul>
   

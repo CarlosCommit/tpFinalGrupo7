@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unju.fi.entity.Ciudadano;
 import ar.edu.unju.fi.service.ICiudadanoService;
 import ar.edu.unju.fi.service.IOfertaService;
+import ar.edu.unju.fi.service.IPostuladoService;
 import ar.edu.unju.fi.service.IUsuarioService;
 import ar.edu.unju.fi.service.util.Provincia;
 
@@ -32,6 +33,8 @@ public class CiudadanoController {
 	IUsuarioService usuarioService;
 	@Autowired
 	private Provincia listaProvincia;
+	@Autowired
+	IPostuladoService postuladoService;
 
 
 @GetMapping("/nuevo")
@@ -50,7 +53,7 @@ public ModelAndView nuevociudadano(Model model) {
 public ModelAndView guardarciudadano(@Validated @ModelAttribute("ciudadano")Ciudadano ciudadano, BindingResult bindingResult) {
     if (bindingResult.hasErrors()) {
     	ModelAndView mav = new ModelAndView("alta_ciudadano");
-    	mav.addObject("lista", ofertaService.getProvincias());
+    	mav.addObject("lista", listaProvincia.getLista());
     	mav.addObject("ciudadano", ciudadano);
     	return mav;
     }
@@ -74,7 +77,7 @@ public ModelAndView homeciudadano(Model model,Principal principal) {
 
 	ModelAndView mav = new ModelAndView("home_ciudadano");
 	mav.addObject("lista", ofertaService.getListaOferta());
-	
+	mav.addObject("listaProvincia", listaProvincia.getLista());
 	//System.out.println(principal.getClass);
 	
 	return mav;
@@ -94,6 +97,23 @@ public ModelAndView filtrarProvincia(@PathVariable(name="pro")String pro)
 {
 	ModelAndView mav = new ModelAndView("home_ciudadano");
 	mav.addObject("lista", ofertaService.getListaFiltroProvincia(pro));
+	mav.addObject("listaProvincia", listaProvincia.getLista());
+	return mav;
+}
+
+@GetMapping("/postulaciones")
+public ModelAndView verPostulaciones(Principal prin)
+{
+	ModelAndView mav = new ModelAndView("postulados_ciudadano");
+	mav.addObject("lista", postuladoService.buscarPostulacionCiudadano(Long.parseLong(prin.getName())));
+	return mav;
+}
+
+@GetMapping("/contrataciones")
+public ModelAndView verContrataciones(Principal prin)
+{
+	ModelAndView mav = new ModelAndView("ofertas_contratado");
+	mav.addObject("lista", ciudadanoService.buscarOfertasContratado(Long.parseLong(prin.getName())));
 	return mav;
 }
 

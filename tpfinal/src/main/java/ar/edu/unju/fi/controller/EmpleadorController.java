@@ -21,6 +21,7 @@ import ar.edu.unju.fi.service.ICvService;
 import ar.edu.unju.fi.service.IEmpleadorService;
 import ar.edu.unju.fi.service.IOfertaService;
 import ar.edu.unju.fi.service.IPostuladoService;
+import ar.edu.unju.fi.service.util.Provincia;
 
 @Controller
 @RequestMapping("/empleador")
@@ -36,12 +37,14 @@ public class EmpleadorController {
 	IPostuladoService postuladoService;
 	@Autowired
     ICvService cvService;
-	
+	@Autowired
+	private Provincia listaProvincia;
 	@GetMapping("/nuevo")
 public ModelAndView crearEmpleador(Model model)
 {
 		ModelAndView mav = new ModelAndView("alta_empleador");
 		mav.addObject("empleador",empleadorService.getEmpleador());
+		mav.addObject("lista",listaProvincia.getLista());
 		return mav;
 }
 	

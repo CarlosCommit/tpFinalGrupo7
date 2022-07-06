@@ -1,5 +1,7 @@
 package ar.edu.unju.fi.service.imp;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +57,38 @@ public class PostulanteServiceImp implements IPostuladoService {
 	@Override
 	public void eliminarPostulante(Long id, Long q) {
 		postulanteDaoImp.delete(buscarPostulante(id, q).get());
+		
+	}
+
+	@Override
+	public List<Postulante> buscarPostulacionCiudadano(long idCiudadano) {
+		
+		//Obtener el objeto Ciudadano del ciudadano conectado
+		Ciudadano ciudadano = ciudadanoDaoImp.findByCiudadanoId(idCiudadano).get();
+		//encontrar la lista de ofertas activas
+		Iterable<Oferta> listaOferta = ofertaDaoImp.findByActive();
+		//filtrar de esas ofertas activas en cuales el ciudadano conectado se postulo
+		
+		List<Postulante> postulantes = new ArrayList<Postulante>();
+		
+		/*
+		for(Oferta oferta: listaOferta)
+		{
+			if(oferta.getCiudadanos().contains(ciudadano))
+			{
+				postulantes.add()
+			}
+		}*/
+		for(Oferta oferta: listaOferta)
+		{
+			if(postulanteDaoImp.findByPost(ciudadano.getId(), oferta.getId()).isPresent())
+			{ 
+				
+				postulantes.add(postulanteDaoImp.findByPost(ciudadano.getId(), oferta.getId()).get());
+			}
+		}
+		
+		return postulantes;
 		
 	}
 

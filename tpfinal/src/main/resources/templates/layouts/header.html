@@ -19,7 +19,9 @@
   Menu</button>
   <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
     <li><a class="dropdown-item" th:href="@{/curriculum/ver}">Ver o Crear Curriculum Vitae</a></li>
-    <li><a class="dropdown-item" th:href="@{/curso/lista}">Cursos online</a></li>
+    <li><a class="dropdown-item" th:href="@{/curso/lista/ciudadano}">Cursos online</a></li>
+    <li><a class="dropdown-item" th:href="@{/ciudadano/postulaciones}">Ver Postulaciones Activas</a></li>
+     <li><a class="dropdown-item" th:href="@{/ciudadano/contrataciones}">Ver Contrataciones</a></li>
   </ul>
 </div>
 
@@ -33,7 +35,8 @@
   Menu</button>
   <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
     <li><a class="dropdown-item "th:href="@{/empleador/home}">Ver Tus Ofertas</a></li>
-    <li><a class="dropdown-item" th:href="@{/empleador/postulantes}">Buscar Postulantes</a></li>
+    <li><a class="dropdown-item" th:href="@{/curso/lista}">Ver Tus Cursos</a></li>
+    <li><a class="dropdown-item" th:href="@{/empleador/postulantes}">Ver Postulantes</a></li>
     <li><a class="dropdown-item" th:href="@{/curso/nuevo}">Crear un Curso</a></li>
      <li><a class="dropdown-item" th:href="@{/oferta/nuevo}">Crear Oferta Laboral</a></li>
   </ul>

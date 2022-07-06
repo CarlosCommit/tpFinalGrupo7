@@ -1,7 +1,7 @@
 package ar.edu.unju.fi.entity;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,13 +12,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name="cursos")
 public class Curso implements Serializable{
@@ -31,12 +31,40 @@ public class Curso implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="cur_id")
 	private Long id;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="emp_id")
+	private Empleador empleador;
+	@ManyToMany(cascade = {CascadeType.ALL},
+	           fetch = FetchType.EAGER)
+	private List<Ciudadano> ciudadanos = new ArrayList<Ciudadano>();	
 	
 	@Column(name="cur_nombre")
 	@NotEmpty
 	private String nombre; 
+	public boolean isDisponible() {
+		return disponible;
+	}
+	public void setDisponible(boolean disponible) {
+		this.disponible = disponible;
+	}
 	@Column(name="cur_vacante")
 	private int vacante; 
+	@Column
+	private String categoria;
+	@Column(name="cur_disponible")
+	private boolean disponible; 
+	public Empleador getEmpleador() {
+		return empleador;
+	}
+	public void setEmpleador(Empleador empleador) {
+		this.empleador = empleador;
+	}
+	public List<Ciudadano> getCiudadanos() {
+		return ciudadanos;
+	}
+	public void setCiudadanos(List<Ciudadano> ciudadanos) {
+		this.ciudadanos = ciudadanos;
+	}
 	@Column(name="cur_detalle")
 	@NotEmpty
 	private String detalle; 
@@ -85,5 +113,10 @@ public class Curso implements Serializable{
 		return serialVersionUID;
 	}
 	
-	
+	public String getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
 }

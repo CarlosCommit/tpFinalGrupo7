@@ -44,6 +44,7 @@
   <select th:field="*{estadoCivil}"  class="form-control" id="estadocivilid" >
        <option value="Casado" th:text="Casado"/>
         <option value="Soltero" th:text="Soltero"/>
+          <option value="Divorciado" th:text="Divorciado"/>
   </select>
   <div class="text-danger" th:if="${#fields.hasErrors('estadoCivil')}" th:errors="*{estadoCivil}"></div>
 	</div>

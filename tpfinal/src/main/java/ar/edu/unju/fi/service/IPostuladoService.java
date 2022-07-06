@@ -1,5 +1,6 @@
 package ar.edu.unju.fi.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import ar.edu.unju.fi.entity.Postulante;
@@ -11,4 +12,6 @@ public interface IPostuladoService {
    public Iterable<Postulante> buscarIdOferta(long id);	
    public Optional<Postulante> buscarPostulante(Long id,Long q);
    public void eliminarPostulante(Long id,Long q);
+   public List<Postulante> buscarPostulacionCiudadano(long idCiudadano);	
+   
 }
