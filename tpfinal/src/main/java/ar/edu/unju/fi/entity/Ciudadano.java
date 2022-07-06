@@ -15,7 +15,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import javax.validation.constraints.NotEmpty;
-
+import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -42,7 +42,7 @@ public class Ciudadano implements Serializable {
 	@NotEmpty
 	private String provincia;
 	@Column(name="ciu_telefono")
-	@NotEmpty
+	@NotNull
 	private long telefono;
 	@Column(name="ciu_fecha")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
