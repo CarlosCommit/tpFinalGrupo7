@@ -27,7 +27,7 @@ public class PostulanteController {
 	{
 	
 		try {
-		ModelAndView mav = new ModelAndView("redirect:/ciudadano/home");
+		ModelAndView mav = new ModelAndView("postulado_exitoso");
 	    Cv curriculum = cvService.BuscarCvDni( Long.parseLong(prin.getName())).get();
 		postulanteService.guardarPostulante(postulanteService.getPostulante(),prin.getName() , id);
 		

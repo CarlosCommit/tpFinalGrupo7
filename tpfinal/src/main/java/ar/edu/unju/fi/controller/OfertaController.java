@@ -73,14 +73,13 @@ public class OfertaController {
 	  return mav;
    }
    
- @GetMapping(path = "/contratar/{id}/{idUsuario}")
+ @GetMapping("/contratar/{id}/{idUsuario}")
    
    public ModelAndView contratar(@PathVariable(name="id") long id,@PathVariable(name="idUsuario")long idUsuario)
    {
 	 
 	  ModelAndView mav = new ModelAndView("redirect:/empleador/home");
 	  Long idciudadano = ciudadanoService.buscarId(idUsuario).get().getId();
-	  System.out.println(idciudadano);
 	  ofertaService.agregarCiudadanoContratado( ofertaService.buscarOferta(id).get() ,ciudadanoService.buscarId(idUsuario).get() );
 	  postulanteService.eliminarPostulante(idciudadano,id);
 	 
@@ -102,5 +101,12 @@ public class OfertaController {
  		
  		return mav;
  	}
-   
+	@GetMapping("/contratados/{id}")
+ 	public ModelAndView verContratados(@PathVariable(value="id")long id,Principal principal) throws Exception {
+ 		ModelAndView mav = new ModelAndView("contratados_oferta");
+ 		
+ 		mav.addObject("contratados",ofertaService.buscarOferta(id).get().getCiudadanos());
+ 		mav.addObject("oferta",ofertaService.buscarOferta(id).get());
+ 		return mav;
+ 	}
 }

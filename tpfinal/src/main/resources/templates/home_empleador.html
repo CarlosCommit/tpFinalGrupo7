@@ -26,11 +26,13 @@
     <p class="card-text"  th:text="${oferta.resumenPuesto}"></p>
      <span>Numero de vacantes:</span><p class="card-text"  th:text="${oferta.vacante}"></p>
      
+    <a th:href="@{/oferta/contratados/}+${oferta.id}" class="btn btn-danger">Ver Contratados</a>
     <a th:href="@{/oferta/editar/}+${oferta.id}" class="btn btn-primary">Editar</a>
     <a th:href="@{/oferta/eliminar/}+${oferta.id}" class="btn btn-danger">Eliminar</a>
   </div>
 </div>
 </div>
+
 <div th:if="${#lists.isEmpty(lista)}">
                 <h2>No creaste ninguna Oferta Aun</h2>
             </div>

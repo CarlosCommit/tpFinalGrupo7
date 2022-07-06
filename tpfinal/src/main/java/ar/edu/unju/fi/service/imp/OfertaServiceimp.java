@@ -90,9 +90,6 @@ public Iterable<Oferta> getListaFiltroProvincia(String provincia) {
 }
 @Override
 public void agregarCiudadanoContratado(Oferta oferta, Ciudadano ciudadano) {
-	//List<Ciudadano> ciudadano2 = oferta.getCiudadanos();
-	//ciudadano2.add(ciudadano);
-	//oferta.setCiudadanos(ciudadano2);
 	oferta.setVacante(oferta.getVacante()-1);
 	oferta.getCiudadanos().add(ciudadano);
 	if (oferta.getVacante()==0) {
@@ -126,9 +123,6 @@ public ArrayList<Provincia> getProvincias() {
 			provincias.add(new Provincia("Neuquen"));
 			provincias.add(new Provincia("Cordoba"));
 			provincias.add(new Provincia("San Luis"));
-			
-			
-
 			return provincias;
 	}
 

@@ -30,7 +30,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 		@Column(name="cv_id")
 		private Long id;
 		@Column(name="cv_dni")
-	    @Min(value=1,message="no puede ser menor a 1000000")
 		private long dni;
 		@Column(name="cv_email")
 		@NotEmpty
