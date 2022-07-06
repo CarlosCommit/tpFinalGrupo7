@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unju.fi.entity.Ciudadano;
 import ar.edu.unju.fi.entity.Curso;
+import ar.edu.unju.fi.service.ICiudadanoService;
 import ar.edu.unju.fi.service.ICursoService;
 import ar.edu.unju.fi.service.IEmpleadorService;
 import ar.edu.unju.fi.service.util.Categoria;
@@ -32,6 +34,8 @@ public class CursoController {
     IEmpleadorService empleadorService;
     @Autowired
     private Categoria categorias;
+    @Autowired
+   	ICiudadanoService ciudadanoService;
 	@GetMapping("/lista")
 	public ModelAndView listaCursos(Principal principal) {
 		ModelAndView mav = new ModelAndView("lista_curso");
@@ -82,4 +86,23 @@ public class CursoController {
 		ModelAndView mav = new ModelAndView("borrado_curso");
 		return mav;
     }
+	@GetMapping("/inscribir/{id}")
+	 public ModelAndView inscribir(@PathVariable(name="id") long id,Principal prin) {
+		ModelAndView mav = new ModelAndView("inscribir_exitoso");
+		Curso curso = cursoService.buscarCurso(id).get();
+		Ciudadano ciudadano = ciudadanoService.buscarId(Long.parseLong(prin.getName())).get();
+	
+		if (curso.getCiudadanos().contains(ciudadano))
+		{
+			return new ModelAndView("error_inscribirse");
+		}
+	
+		//le paso dos parametros el ciudadano y el curso donde se va a agregar
+	    cursoService.agregarCiudadanoInscripto(curso, ciudadano);
+		
+		return mav;
+		
+		
+	}
+	
 }

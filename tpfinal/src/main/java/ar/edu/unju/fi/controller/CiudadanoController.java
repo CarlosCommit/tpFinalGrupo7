@@ -131,6 +131,13 @@ public ModelAndView verContrataciones(Principal prin)
 	mav.addObject("lista", ciudadanoService.buscarOfertasContratado(Long.parseLong(prin.getName())));
 	return mav;
 }
+@GetMapping("/inscripciones")
+public ModelAndView verInscripciones(Principal prin)
+{
+	ModelAndView mav = new ModelAndView("cursos_inscriptos");
+	mav.addObject("lista", ciudadanoService.getListaIncriptas(Long.parseLong(prin.getName())));
+	return mav;
+}
 //filtrado por categ
 @GetMapping("/categoria/{cat}")
 public ModelAndView filtrarCategoria(@PathVariable(name="cat")String cat)

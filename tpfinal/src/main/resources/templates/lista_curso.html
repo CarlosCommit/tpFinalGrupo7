@@ -43,7 +43,7 @@
     <h6 class="card-title" th:text="${curso.duracion}"></h6>
     <p>Precio del curso</p>
     <p class="card-text" th:text="${curso.precio}"></p>
-    <a href="#" class="btn btn-primary"  sec:authorize="hasAuthority('CIUDADANO')">Inscribirse</a>
+    <a th:href="@{/curso/inscribir/}+${curso.id}" class="btn btn-primary"  sec:authorize="hasAuthority('CIUDADANO')">Inscribirse</a>
      <a href="" class="btn btn-primary"  sec:authorize="hasAuthority('EMPLEADOR')">Editar</a>
       <a th:href="@{/curso/eliminar/}+${curso.id}" class="btn btn-primary"  sec:authorize="hasAuthority('EMPLEADOR')">Eliminar</a>
   </div>

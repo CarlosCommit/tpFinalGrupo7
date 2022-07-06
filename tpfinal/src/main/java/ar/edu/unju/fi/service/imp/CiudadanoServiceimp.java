@@ -11,8 +11,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unju.fi.entity.Ciudadano;
+import ar.edu.unju.fi.entity.Curso;
 import ar.edu.unju.fi.entity.Oferta;
 import ar.edu.unju.fi.repository.ICiudadanoDAO;
+import ar.edu.unju.fi.repository.ICursoDAO;
 import ar.edu.unju.fi.repository.IOfertaDAO;
 import ar.edu.unju.fi.service.ICiudadanoService;
 @Service
@@ -22,6 +24,8 @@ public class CiudadanoServiceimp implements ICiudadanoService {
 	ICiudadanoDAO ciudadanoDaoImp;
 	@Autowired
 	IOfertaDAO ofertaDaoImp;
+	@Autowired
+	ICursoDAO cursoDaoImp;
 
 	@Override
 	public void guardarCiudadano(Ciudadano ciudadano) {
@@ -74,6 +78,24 @@ public class CiudadanoServiceimp implements ICiudadanoService {
 				}
 				
 				return ofertas;
+	}
+	
+	@Override
+	public List<Curso> getListaIncriptas(long id) {
+		Ciudadano ciudadano = ciudadanoDaoImp.findByCiudadanoId(id).get();
+		Iterable<Curso> listaCurso = cursoDaoImp.findAll();
+		List<Curso> cursos = new ArrayList<>();
+		for(Curso curso: listaCurso)
+		{
+			if(curso.getCiudadanos().contains(ciudadano))
+			{
+				cursos.add(curso);
+				
+			}
+		}
+		
+		
+		return cursos;
 	}
 
 }

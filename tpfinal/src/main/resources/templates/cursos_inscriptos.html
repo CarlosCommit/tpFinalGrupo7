@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+<title>Ciudadano</title>
+</head>
+<body>
+	<header th:replace="/layouts/header :: header"></header>
+	
+	<div class="container">
+
+	<h1 class="text-center">CURSOS A LOS QUE ESTAS INSCRIPTO</h1>
+	<br>
+	
+
+ 
+
+
+<div th:each="curso: ${lista}" class="card ">
+  <div class="card-header text-center h4" th:text="${curso.nombre}">
+  </div>
+  <div class="card-body">
+  
+    <h5 class="card-title" th:text="${curso.detalle}"></h5>
+    <h6 class="card-title" th:text="${curso.duracion}"></h6>
+    <p>Precio del curso</p>
+    <p class="card-text" th:text="${curso.precio}"></p>
+  </div>
+  <div class="card-footer text-muted">
+  </div>
+</div>
+<br>
+</div>
+
+
+	<footer th:replace="/layouts/footer :: footer"></footer>
+	<script src="/webjars/jquery/jquery.min.js" type="text/javascript"></script>
+	<script src="/webjars/popper.js/umd/popper.min.js" type="text/javascript"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+</body>
+</html>
