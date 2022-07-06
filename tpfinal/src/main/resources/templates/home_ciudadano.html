@@ -67,14 +67,26 @@
 </div>
 
 
-<div class="container col-4">
-<div class="card "th:each="oferta: ${lista}">
+<div class="cont">
+<div class="card separar"th:each="oferta: ${lista}">
 
   <img class="card-img-top" th:src="@{/images/trabajo.png}" height="150" alt="Card image cap">
   
   <div class="card-block">
     <h4 class="card-title"  th:text="${oferta.puestoRequerido}">Card title</h4>
     <p class="card-text"  th:text="${oferta.resumenPuesto}"></p>
+    <div class="single-line">
+    <p >Vacantes:</p>
+    <p class="card-text"  th:text="${oferta.vacante}"></p>
+    </div>
+    <div class="single-line">
+    <p >Provincia:</p>
+    <p class="card-text"  th:text="${oferta.provincia}"></p>
+    </div>
+    <div class="single-line">
+    <p >Contacto:</p>
+    <p class="card-text"  th:text="${oferta.datosContacto}"></p>
+    </div>
     <a th:href="@{/postulante/postularse/}+${oferta.id}" class="btn btn-primary">Postularse</a>
   </div>
 </div>

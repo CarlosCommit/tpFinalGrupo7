@@ -43,7 +43,7 @@ public class Ciudadano implements Serializable {
 	private String provincia;
 	@Column(name="ciu_telefono")
 	@NotEmpty
-	private String telefono;
+	private long telefono;
 	@Column(name="ciu_fecha")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate fechaNacimiento;
@@ -80,10 +80,10 @@ public class Ciudadano implements Serializable {
 	public void setProvincia(String provincia) {
 		this.provincia = provincia;
 	}
-	public String getTelefono() {
+	public long getTelefono() {
 		return telefono;
 	}
-	public void setTelefono(String telefono) {
+	public void setTelefono(long telefono) {
 		this.telefono = telefono;
 	}
 	public LocalDate getFechaNacimiento() {

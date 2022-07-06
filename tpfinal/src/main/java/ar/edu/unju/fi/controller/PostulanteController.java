@@ -3,6 +3,8 @@ package ar.edu.unju.fi.controller;
 import java.security.Principal;
 import java.util.NoSuchElementException;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +23,7 @@ import ar.edu.unju.fi.service.IPostuladoService;
 @Controller
 @RequestMapping("/postulante")
 public class PostulanteController {
-	
+	private static final Log LOGGER = LogFactory.getLog(PostulanteController.class);
 	@Autowired
 	IPostuladoService postulanteService;
 	@Autowired

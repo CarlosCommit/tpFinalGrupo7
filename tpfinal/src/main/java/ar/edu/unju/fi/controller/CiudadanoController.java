@@ -2,6 +2,8 @@ package ar.edu.unju.fi.controller;
 
 import java.security.Principal;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +28,7 @@ import ar.edu.unju.fi.service.util.Provincia;
 @Controller
 @RequestMapping("/ciudadano")
 public class CiudadanoController {
-	
+	private static final Log LOGGER = LogFactory.getLog(CiudadanoController.class);
 	@Autowired
 	ICiudadanoService ciudadanoService;
 	@Autowired
@@ -44,7 +46,7 @@ public class CiudadanoController {
 
 
 
-
+//creacion de nuevo ciudadano
 @GetMapping("/nuevo")
 public ModelAndView nuevociudadano(Model model) {
 	ModelAndView mav = new ModelAndView("alta_ciudadano");
@@ -56,18 +58,21 @@ public ModelAndView nuevociudadano(Model model) {
 	
 	return mav;
 }
-
+// guardando nuevo ciudadano
 @PostMapping("/guardar")
 public ModelAndView guardarciudadano(@Validated @ModelAttribute("ciudadano")Ciudadano ciudadano, BindingResult bindingResult) {
     if (bindingResult.hasErrors()) {
     	ModelAndView mav = new ModelAndView("alta_ciudadano");
     	mav.addObject("lista", listaProvincia.getLista());
     	mav.addObject("ciudadano", ciudadano);
+    	LOGGER.info("error de validacion");
     	return mav;
     }
+    //verifica edad
     if(ciudadano.getEdad()>=18)
     {
     	ciudadanoService.guardarCiudadano(ciudadano);
+    	LOGGER.info("ciudadano guardado");
     	ModelAndView mav = new ModelAndView("redirect:/login");
     	return mav;
     }else
@@ -79,7 +84,7 @@ public ModelAndView guardarciudadano(@Validated @ModelAttribute("ciudadano")Ciud
 	
 
 }
-
+// pagina principal del ciudadano
 @GetMapping("/home")
 public ModelAndView homeciudadano(Model model,Principal principal) {
 
@@ -100,6 +105,7 @@ public ModelAndView loginc() {
 return mav;	
 }
 
+//filtrado por provincia
 @GetMapping("/filtrar/{pro}")
 public ModelAndView filtrarProvincia(@PathVariable(name="pro")String pro)
 {
@@ -109,6 +115,7 @@ public ModelAndView filtrarProvincia(@PathVariable(name="pro")String pro)
 	return mav;
 }
 
+//control de postulaciones
 @GetMapping("/postulaciones")
 public ModelAndView verPostulaciones(Principal prin)
 {
@@ -124,7 +131,7 @@ public ModelAndView verContrataciones(Principal prin)
 	mav.addObject("lista", ciudadanoService.buscarOfertasContratado(Long.parseLong(prin.getName())));
 	return mav;
 }
-
+//filtrado por categ
 @GetMapping("/categoria/{cat}")
 public ModelAndView filtrarCategoria(@PathVariable(name="cat")String cat)
 {

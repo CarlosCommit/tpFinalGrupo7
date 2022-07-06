@@ -17,7 +17,7 @@
 	<br>
 	<h4 class="text-center">Edicion de Oferta laboral</h4>
 	<br>
-	<form th:action="@{/oferta/guardar}" method="POST" th:object="${oferta}">
+	<form th:action="@{/oferta/modificar/}+${oferta.id}" method="POST" th:object="${oferta}">
 	
 	
 	<div class="mb-3">
@@ -37,9 +37,14 @@
 	</div>
 	<div class="mb-3">
 	<div class="mb-3">
-  <label for="provinciaid" class="form-label">Provincia para el puesto</label>
-  <input th:field="*{provincia}" type="text" class="form-control" id="provinciaid" placeholder="Ingrese la Provincia">
-  <div class="text-danger" th:if="${#fields.hasErrors('provincia')}" th:errors="*{provincia}"></div>
+  
+					<label for="em" class="form-label">Provincia para el puesto</label> 
+					<select th:field="*{provincia}" class="form-control" id="empleadorId">
+						<option th:each="provincia : ${lista}"
+							th:value="${provincia}"
+							th:text="${provincia}"
+						/>
+					</select>		
 	</div>
 	
   <label for="datosContacto" class="form-label">Datos de contacto</label>

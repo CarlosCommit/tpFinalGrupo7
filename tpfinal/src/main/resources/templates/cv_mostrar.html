@@ -19,32 +19,56 @@
   Curriculum Vitae
   </div>
   <div class="card-body">
+  <div class="car">
   	<h6 class="text-center" >Datos personales</h6>
+  	</div>
+  	<div class="card separar">
   	<div class="single-line">
-  	<p>NOMBRE COMPLETO:</p>
-  	<h6 class="card-title" th:text="${cv.nombre}"></h6>
+  	<p>Nombre Completo: </p>
+  	<p class="card-title" th:text="${cv.nombre}"></p>
   	</div>
   	<div class="single-line">
   	<p>Dni:</p>
-    <h6 class="card-title" th:text="${cv.dni}"></h6>
+    <p class="card-title" th:text="${cv.dni}"></p>
     </div>
     <div class="single-line">
     <p>Fecha de nacimiento:</p>
-     <h6 class="card-title" th:text="${cv.fechaNacimiento}"></h6>
+     <p class="card-title" th:text="${cv.fechaNacimiento}"></p>
      </div>
+     </div>
+     <wbr>
+     
+     <div class="car">
       <h6 class="text-center" >Experiencias Laborales</h6>
-      <h6 class="card-title" th:text="${cv.exLaboral}"></h6>
+      </div>
+      <div class="card separar">
+      <p class="card-title" th:text="${cv.exLaboral}"></p>
+      </div>
+      <wbr>
+     <div class="car">
       <h6 class="text-center" >Datos academicos</h6>
-      <h6 class="card-title" th:text="${cv.educacion}"></h6>
+      </div>
+      </div>
+      <div class="card separar">
+      <p class="card-title" th:text="${cv.educacion}"></p>
       <div class="single-line">
       <p>IDIOMAS:</p>
-      <h6 class="card-title" th:text="${cv.idioma}"></h6>
+      <p class="card-title" th:text="${cv.idioma}"></p>
       </div>
+      <wbr>
+      <div class="car">
       <h6 class="text-center" >Informacion complementaria</h6>
-      <h6 class="card-title" th:text="${cv.infoComplementaria}"></h6>
+      </div>
+      <div class="card separar">
+      <p class="card-title" th:text="${cv.infoComplementaria}"></p>
+      </div>
+      <wbr>
+      <div class="car">
      <h6 class="text-center" >Informacion adicional</h6>
+     </div>
+     <div class="card separar">
     <p class="card-text" th:text="${cv.datAdicional}"></p>
-    
+    </div>
   </div>
   <div class="card-footer text-muted">
   </div>

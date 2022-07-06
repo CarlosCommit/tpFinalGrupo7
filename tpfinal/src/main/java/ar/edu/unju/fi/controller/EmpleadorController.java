@@ -2,6 +2,8 @@ package ar.edu.unju.fi.controller;
 
 import java.security.Principal;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +28,7 @@ import ar.edu.unju.fi.service.util.Provincia;
 @Controller
 @RequestMapping("/empleador")
 public class EmpleadorController {
-
+	private static final Log LOGGER = LogFactory.getLog(EmpleadorController.class);
 	@Autowired
 	IEmpleadorService empleadorService;
 	@Autowired
@@ -54,14 +56,17 @@ public ModelAndView crearEmpleador(Model model)
 		 if (bindingResult.hasErrors()) {
 		    	ModelAndView mav = new ModelAndView("alta_empleador");
 		    	mav.addObject("empleador", empleador);
+		    	mav.addObject("lista", listaProvincia.getLista());
+		    	LOGGER.info("error de validacion");
 		    	return mav;
 		    }
 		
 		ModelAndView mav = new ModelAndView("redirect:/empleador/home");
 		empleadorService.guardarEmpleador(empleador);
+		LOGGER.info("nuevo empleador creado");
 		return mav;
 	}
-	
+	// pagina principal de empleador
 	@GetMapping("/home")
 	public ModelAndView homeEmpleador(Model model,Principal principal) {
 		
@@ -75,7 +80,7 @@ public ModelAndView crearEmpleador(Model model)
 		mav.addObject("lista",empleadorService.getListaPostulante(empleadorService.getId(Long.parseLong(principal.getName()))));
 		return mav;
 	}
-	
+	// para ver curriculum del postulado
 	@GetMapping("/verCurriculum/{id}")
 	public ModelAndView verPostulantes(@PathVariable(name="id")long id,Principal principal) {
 		ModelAndView mav = new ModelAndView("cv_mostrar");

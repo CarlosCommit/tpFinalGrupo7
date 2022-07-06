@@ -98,6 +98,5 @@ public void agregarCiudadanoContratado(Oferta oferta, Ciudadano ciudadano) {
 }
 
 
-
 }
 

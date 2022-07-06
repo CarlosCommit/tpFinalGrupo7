@@ -4,6 +4,8 @@ import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +30,7 @@ import ar.edu.unju.fi.service.util.Provincia;
 @Controller
 @RequestMapping("/oferta")
 public class OfertaController {
-
+	private static final Log LOGGER = LogFactory.getLog(OfertaController.class);
 	@Autowired
 	IOfertaService ofertaService;
 	@Autowired
@@ -64,7 +66,7 @@ public class OfertaController {
 	   ModelAndView mav = new ModelAndView("redirect:/empleador/home");
 	   
 	ofertaService.guardarOferta(oferta, principal.getName());
-	  
+	  LOGGER.info("nueva oferta creada");
 	
 	   return mav; 
    }
@@ -74,10 +76,11 @@ public class OfertaController {
    public ModelAndView eliminarOferta(@PathVariable(name="id") long id,Model model)
    {
 	  ofertaService.eliminarOferta(id); 
+	  LOGGER.info("ofert eliminada");
 	  ModelAndView mav = new ModelAndView("redirect:/empleador/home");
 	  return mav;
    }
-   
+   // toma como parametro id de of y usu
  @GetMapping("/contratar/{id}/{idUsuario}")
    
    public ModelAndView contratar(@PathVariable(name="id") long id,@PathVariable(name="idUsuario")long idUsuario)
@@ -95,14 +98,18 @@ public class OfertaController {
  	public ModelAndView editarOferta(@PathVariable(value="id")long id,Principal principal) throws Exception {
  		ModelAndView mav = new ModelAndView("editar_oferta");
  		mav.addObject("oferta",ofertaService.buscarOferta(id).get());
+ 		mav.addObject("lista", listaProvincia.getLista());
  		return mav;
  	}
  	
- 	@PostMapping("/modificar")
- 	public ModelAndView modificarOferta(@ModelAttribute("oferta")Oferta oferta,Principal p) throws Exception {
- 		ModelAndView mav = new ModelAndView("redirect:/home/empleador");
+ 	@PostMapping("/modificar/{id}")
+ 	public ModelAndView modificarOferta(@PathVariable(value="id")long idof,@ModelAttribute("oferta")Oferta oferta,Principal p) throws Exception {
+ 	
+ 		ModelAndView mav = new ModelAndView("redirect:/empleador/home");
  		oferta.setEmpleador(empleadorService.buscarEmpleador(Long.parseLong(   p.getName()   )).get());
+ 		oferta.setId(idof);
  		ofertaService.editarOferta(oferta);
+ 		LOGGER.info("oferta editada");
  		
  		return mav;
  	}

@@ -4,6 +4,8 @@ import java.security.Principal;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -22,12 +24,12 @@ import ar.edu.unju.fi.service.ICvService;
 @Controller
 @RequestMapping("/curriculum")
 public class CvController {
-
+	private static final Log LOGGER = LogFactory.getLog(CvController.class);
 	@Autowired
 	ICvService cvService;
 	@Autowired
 	ICiudadanoService ciudadanoService;
-	
+	// nuevo curriculum
 	@GetMapping("/nuevo")
 	public ModelAndView nuevoCv() {
 		ModelAndView mav = new ModelAndView("cv_alta");
@@ -46,10 +48,10 @@ public class CvController {
 		
 		cv.setCiudadano(ciudadanoService.buscarId(Long.parseLong( principal.getName() )).get()  );
 		cvService.GuardarCv(cv,Long.parseLong(principal.getName() ));
-		
+		LOGGER.info("nuevo curriculum creado");
 		return mav;
 	}
-	
+	// muestra el curriculum del ciudadano conectado
 	@GetMapping("/ver")
 	public ModelAndView verCurriculum(Principal principal) {
 		try {
@@ -60,7 +62,7 @@ public class CvController {
 			}catch (NoSuchElementException e) {
 				ModelAndView mav = new ModelAndView("redirect:/curriculum/nuevo");
 				return mav;
-				
+				// el catch sirve para controlar si no se encontro cv,para crear uno nuevo
 			}
 	}
 	
@@ -73,7 +75,12 @@ public class CvController {
 	}
 	
 	@PostMapping("/modificar")
-	public ModelAndView modCv(@ModelAttribute ("curriculum")Cv curriculum,Principal principal) {
+	public ModelAndView modCv(@Validated @ModelAttribute ("curriculum")Cv curriculum,Principal principal,BindingResult bin) {
+		if(bin.hasErrors()) {
+			ModelAndView mav = new ModelAndView("cv_editar");
+			mav.addObject("curriculum", curriculum);
+			return mav;
+		}
 		ModelAndView mav = new ModelAndView("redirect:/ciudadano/home");
 		Optional<Cv> curri = cvService.BuscarCv(ciudadanoService.buscarId(Long.parseLong( principal.getName() )).get().getId() );
 		
@@ -81,7 +88,7 @@ public class CvController {
 		curriculum.setCiudadano(ciudadanoService.buscarId(Long.parseLong( principal.getName() )).get()  );
 		
 		cvService.GuardarCv(curri.get(),Long.parseLong(principal.getName() ));
-		
+		LOGGER.info("nuevo modificado con exito");
 		return mav;
 	}
 	

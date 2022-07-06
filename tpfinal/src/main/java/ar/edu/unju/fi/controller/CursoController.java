@@ -2,6 +2,8 @@ package ar.edu.unju.fi.controller;
 
 import java.security.Principal;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +25,7 @@ import ar.edu.unju.fi.service.util.Categoria;
 @Controller
 @RequestMapping("/curso")
 public class CursoController {
-
+	private static final Log LOGGER = LogFactory.getLog(CursoController.class);
 	@Autowired
 	ICursoService cursoService;
     @Autowired
@@ -49,7 +51,7 @@ public class CursoController {
 		mav.addObject("categorias", categorias.getLista());
 		return mav;
 	}
-	
+	//nuevo curso
 	@GetMapping("/nuevo")
 	public ModelAndView nuevoCurso() {
 		ModelAndView mav = new ModelAndView("alta_curso");
@@ -76,6 +78,7 @@ public class CursoController {
     public ModelAndView eliminarCurso(@PathVariable(name="id") long id,Model model)
     {
 		cursoService.eliminarCurso(id);
+		LOGGER.info("curso eliminado");
 		ModelAndView mav = new ModelAndView("borrado_curso");
 		return mav;
     }

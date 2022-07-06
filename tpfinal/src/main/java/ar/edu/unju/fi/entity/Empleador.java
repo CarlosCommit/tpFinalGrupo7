@@ -50,7 +50,7 @@ public class Empleador implements Serializable {
 	private String email; 
 	@Column(name="emp_telefono")
 	@NotNull
-	private int telefono;//podria ser una tabla
+	private long telefono;//podria ser una tabla
 	@Column(name="emp_domicilio")
 	@NotEmpty
 	private String domicilio;//podria ser una tabla
@@ -115,11 +115,11 @@ public class Empleador implements Serializable {
 		this.email = email;
 	}
 
-	public int getTelefono() {
+	public long getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(int telefono) {
+	public void setTelefono(long telefono) {
 		this.telefono = telefono;
 	}
 

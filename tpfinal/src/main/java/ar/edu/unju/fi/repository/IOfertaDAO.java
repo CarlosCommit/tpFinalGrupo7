@@ -2,6 +2,8 @@ package ar.edu.unju.fi.repository;
 
 
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -18,5 +20,6 @@ public interface IOfertaDAO extends CrudRepository<Oferta, Long> {
 	
 	@Query(value= "SELECT * FROM ofertas WHERE ofertas.ofe_disponible = true AND ofertas.ofe_provincia= :q", nativeQuery = true)	
 	public Iterable<Oferta> findByProvincia (@Param("q")String q );
+	
 	
 }
